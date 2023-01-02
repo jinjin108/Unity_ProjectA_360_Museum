@@ -16,7 +16,11 @@ MonoBehaviour:
   m_TableCollectionNameGuidString: 911f08f578aee3e43b103555e32a8856
   m_Entries:
   - m_Id: 10313437184
-    m_Key: hello_key
+    m_Key: GameInfo
+    m_Metadata:
+      m_Items: []
+  - m_Id: 31789267193856
+    m_Key: New Entry
     m_Metadata:
       m_Items: []
   m_Metadata:

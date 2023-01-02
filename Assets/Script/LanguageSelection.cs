@@ -1,24 +1,30 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 using UnityEngine.Localization;
 using UnityEngine.Localization.Settings;
 
 public class LanguageSelection : MonoBehaviour
 {
-    void Start()
+    [SerializeField] private TMP_Text txtinfo;
+    private void Start()
     {
-      //  UserLocalization(1);
-    }
+        txtinfo.gameObject.SetActive(false);
 
-    void Update()
-    {
-        
     }
-    public void UserLocalization(int index)
+    public void UserLocalization()
     {
         LocalizationSettings.SelectedLocale =
-            LocalizationSettings.AvailableLocales.Locales[index];
+            LocalizationSettings.AvailableLocales.Locales[1];
+        txtinfo.gameObject.SetActive(true);
     }
 
+    public void UserLocalizationko()
+    {
+        LocalizationSettings.SelectedLocale =
+            LocalizationSettings.AvailableLocales.Locales[0];
+        txtinfo.gameObject.SetActive(true);
+
+    }
 }

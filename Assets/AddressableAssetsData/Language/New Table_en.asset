@@ -19,9 +19,7 @@ MonoBehaviour:
     m_Items: []
   m_TableData:
   - m_Id: 10313437184
-    m_Localized: 'Please select a language
-
-      English'
+    m_Localized: GameInfo
     m_Metadata:
       m_Items: []
   references:
