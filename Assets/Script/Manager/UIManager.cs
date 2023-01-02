@@ -51,9 +51,9 @@ public class UIManager : MonoBehaviour
     }
 
     /// <summary>
-    /// UI¸¦ ´İ´Â ÇÔ¼öÀÔ´Ï´Ù.
+    /// UIë¥¼ ë‹«ëŠ” í•¨ìˆ˜ì…ë‹ˆë‹¤.
     /// </summary>
-    /// <param name="uiName">´İ¾Æ¾ßÇÏ´Â uiÀÇ string ÀÔ´Ï´Ù.</param>
+    /// <param name="uiName">ë‹«ì•„ì•¼í•˜ëŠ” uiì˜ string ì…ë‹ˆë‹¤.</param>
     public void CloseUI(string uiName)
     {
         if (uiList.ContainsKey(uiName))
@@ -69,8 +69,8 @@ public class UIManager : MonoBehaviour
 
     }
 
-    public void ClearList() // ¾ÀÀüÈ¯À» ÇÒ¶§ ¸®½ºÆ®·Î ºÒ·¯¿Â°ÍµéÀÌ ¾ÈÂÊ Àº Áö¿öÁö°í ²®µ¥±â¸¸ ³²¾Æ¼­¿Â´Ù ±×·¡¼­ ¸·»ó ºÒ·¯¿ÔÁö¸¸
-    {                       // ÀÖ´Ù°í »ı°¢ÇØ¼­ Àç»ı¼ºÀ» ÇÏÁö¾Ê¾Æ ¿¡·¯°¡ ¹ß»ıÇÑ´Ù ±×·¡¤ÃÁö¿öÁÖ´Â°Í
+    public void ClearList() // ì”¬ì „í™˜ì„ í• ë•Œ ë¦¬ìŠ¤íŠ¸ë¡œ ë¶ˆëŸ¬ì˜¨ê²ƒë“¤ì´ ì•ˆìª½ ì€ ì§€ì›Œì§€ê³  ê»ë°ê¸°ë§Œ ë‚¨ì•„ì„œì˜¨ë‹¤ ê·¸ë˜ì„œ ë§‰ìƒ ë¶ˆëŸ¬ì™”ì§€ë§Œ
+    {                       // ìˆë‹¤ê³  ìƒê°í•´ì„œ ì¬ìƒì„±ì„ í•˜ì§€ì•Šì•„ ì—ëŸ¬ê°€ ë°œìƒí•œë‹¤ ê·¸ë˜ã…“ì§€ì›Œì£¼ëŠ”ê²ƒ
         uiList.Clear();
     }
     #endregion
