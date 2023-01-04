@@ -10,18 +10,24 @@ using UnityEngine.ResourceManagement.AsyncOperations;
 public class LanguageSelection : MonoBehaviour
 {
     string str;
-
+    int txtscore = 0;
 
     [SerializeField] private TMP_Text txtinfo;
     [SerializeField] private TMP_Text txtinfoText;
     [SerializeField] private Button LocalizationKoBnt;
     [SerializeField] private Button LocalizationEnBnt;
     [SerializeField] private Button StartBnt;
+    [SerializeField] private Button NextBnt;
+    [SerializeField] private Button BackBnt;
+
+
 
     private void Start()
     {
         txtinfo.gameObject.SetActive(false);
         txtinfoText.gameObject.SetActive(false);
+        NextBnt.gameObject.SetActive(false);
+        BackBnt.gameObject.SetActive(false);
         LocalizationBntFalse();
 
 
@@ -31,8 +37,11 @@ public class LanguageSelection : MonoBehaviour
         LocalizationSettings.SelectedLocale =
             LocalizationSettings.AvailableLocales.Locales[1];
         txtinfoText.gameObject.SetActive(true);
+        NextBnt.gameObject.SetActive(true);
+        BackBnt.gameObject.SetActive(true);
+
         LocalizationBntFalse();
-        LocalizationTable();
+        LocalizationTable("GameInfo");
         txtinfo.text = str;
 
 
@@ -43,7 +52,13 @@ public class LanguageSelection : MonoBehaviour
         LocalizationSettings.SelectedLocale =
             LocalizationSettings.AvailableLocales.Locales[0];
         txtinfoText.gameObject.SetActive(true);
+        NextBnt.gameObject.SetActive(true);
+        BackBnt.gameObject.SetActive(true);
+
         LocalizationBntFalse();
+        LocalizationTable("GameInfo");
+        txtinfo.text = str;
+
 
     }
 
@@ -62,15 +77,50 @@ public class LanguageSelection : MonoBehaviour
 
     }
 
-    public string LocalizationTable()
+    public void LocalizationTable(string key)
     {
-
-        var stringOperation = LocalizationSettings.StringDatabase.GetLocalizedStringAsync("New Table", "GameInfo");
+        var stringOperation = LocalizationSettings.StringDatabase.GetLocalizedStringAsync("New Table", key);
         if (stringOperation.IsDone && stringOperation.Status == AsyncOperationStatus.Succeeded)
         {
             str = stringOperation.Result;
         }
-
-        return str;
     }
+
+    public void NextText()
+    {
+        switch (txtscore)
+        {
+            case 0:
+                LocalizationTable("info2");
+                txtinfoText.text = str;
+                txtscore += 1;
+                break;
+            case 1:
+                LocalizationTable("info3");
+                txtinfoText.text = str;
+                txtscore += 1;
+
+                break;
+        }
+
+    }
+    public void BackText()
+    {
+        switch (txtscore)
+        {
+            case 1:
+                LocalizationTable("info1");
+                txtinfoText.text = str;
+                txtscore -= 1;
+                break;
+            case 2:
+                LocalizationTable("info2");
+                txtinfoText.text = str;
+                txtscore -= 1;
+                break;
+
+        }
+
+    }
+
 }
