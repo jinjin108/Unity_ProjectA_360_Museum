@@ -25,6 +25,22 @@ public class ObjectManager : MonoBehaviour
     Dictionary<string, GameObject> objectList = new Dictionary<string, GameObject>();
     Dictionary<string, GameObject> RelicsList = new Dictionary<string, GameObject>();
 
+    public void CreateQuest()
+    {
+        QuestObject[] questObjectList = QuestManager.GetInstance().questObjectList;
+
+        for (int i = 0; i < questObjectList.Length; i++)
+        {
+            string showCaseName = questObjectList[i].showCaseName;
+            string reliceName = questObjectList[i].reliceName;
+
+            CreateObject(showCaseName);
+            InPutRelics(reliceName, showCaseName);
+            CreateSymbol(reliceName);
+        }
+
+    }
+
     public void CreateObject(string objectName)
     {
         if (objectList.ContainsKey(objectName) == false)
@@ -49,8 +65,9 @@ public class ObjectManager : MonoBehaviour
         {
             Object Obj = Resources.Load("Object/" + relicsName);
             GameObject go = (GameObject)Instantiate(Obj);
-            
+
             go.transform.position = objectList[objectName].gameObject.transform.position;
+            go.transform.position = new Vector3(0,1f,0);
 
             QuestObject questObject = go.GetComponent<QuestObject>();
             if (questObject.isDone == false)
@@ -62,5 +79,18 @@ public class ObjectManager : MonoBehaviour
         }
         else
         RelicsList[relicsName].SetActive(true);
+    }
+
+    public void CreateSymbol(string reliceName)
+    {
+        Object Obj = Resources.Load("Object/" + "Symbol");
+        GameObject go = (GameObject)Instantiate(Obj);
+        go.transform.position = RelicsList[reliceName].gameObject.transform.position;
+        go.transform.position += new Vector3(0,1.5f,0); 
+
+        if (RelicsList[reliceName].gameObject.activeSelf == true)
+        {
+            go.SetActive(false);
+        }
     }
 }
