@@ -108,8 +108,11 @@ public class LanguageSelection : MonoBehaviour
                 LocalizationTable("info3");
                 txtinfoText.text = str;
                 txtscore += 1;
-
                 break;
+            case 5:
+                ScenesManager.GetInstance().ChangeScene(Scene.Main);
+                break;
+
         }
 
     }
