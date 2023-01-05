@@ -22,7 +22,7 @@ public class ObjectManager : MonoBehaviour
     }
     #endregion
 
-    Dictionary<string, GameObject> objectList = new Dictionary<string, GameObject>();
+    public Dictionary<string, GameObject> objectList = new Dictionary<string, GameObject>();
     Dictionary<string, GameObject> RelicsList = new Dictionary<string, GameObject>();
     List<GameObject> SymbolList = new List<GameObject>();
 
@@ -48,6 +48,10 @@ public class ObjectManager : MonoBehaviour
         {
             Object Obj = Resources.Load("Object/" + objectName);
             GameObject go = (GameObject)Instantiate(Obj);
+            
+            int index = go.name.IndexOf("(Clone)");
+            if (index > 0) 
+            go.name = go.name.Substring(0, index);
 
             objectList.Add(objectName, go);
         }
@@ -101,5 +105,21 @@ public class ObjectManager : MonoBehaviour
         {
             go.SetActive(false);
         }
+    }
+
+    public GameObject GetObject(string objectName)
+    {
+        if (objectList.ContainsKey(objectName))
+            return objectList[objectName];
+
+        return null;
+
+    }
+
+    public void ClearList() 
+    {                       
+        objectList.Clear();
+        RelicsList.Clear();
+        SymbolList.Clear();
     }
 }
