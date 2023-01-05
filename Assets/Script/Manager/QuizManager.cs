@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Video;
 
 public class QuizManager : MonoBehaviour
 {
@@ -22,5 +23,18 @@ public class QuizManager : MonoBehaviour
     }
     #endregion
 
+    string[] quizVideoList = {"Relics_1", "Relics_2", "Relics_3"};
+
     public int curQuizNumber;
+    string curReliceName;
+
+    VideoPlayer quizVideo;
+
+    public void CurrentQuizStart()
+    {
+        GameObject quizVideogo = GameObject.FindGameObjectWithTag("VideoPlayer");
+        quizVideo = quizVideogo.GetComponent<VideoPlayer>();
+
+        quizVideo.clip = Resources.Load<VideoClip>($"Videos/"+quizVideoList[curQuizNumber]);
+    }
 }
