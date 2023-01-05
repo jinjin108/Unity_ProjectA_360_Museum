@@ -95,7 +95,7 @@ GameObject:
   - component: {fileID: 706036092724609547}
   - component: {fileID: 706036092724609544}
   m_Layer: 0
-  m_Name: QuestObject
+  m_Name: Relics_1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
