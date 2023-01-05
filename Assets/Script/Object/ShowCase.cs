@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class ShowCase : MonoBehaviour
 {
-    void EnterQuizScene()
+    public void EnterQuizScene()
     {
         ScenesManager.GetInstance().ChangeScene(Scene.Quiz);
     }
