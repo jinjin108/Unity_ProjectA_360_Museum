@@ -24,6 +24,7 @@ public class ObjectManager : MonoBehaviour
 
     Dictionary<string, GameObject> objectList = new Dictionary<string, GameObject>();
     Dictionary<string, GameObject> RelicsList = new Dictionary<string, GameObject>();
+    List<GameObject> SymbolList = new List<GameObject>();
 
     public void CreateQuest()
     {
@@ -54,9 +55,15 @@ public class ObjectManager : MonoBehaviour
         objectList[objectName].SetActive(true);
     }
 
-    public void MoveShowcase(string objectName, Vector3 positon)
+    public void MoveShowcase(int questNumber ,Vector3 positon)
     {
-        objectList[objectName].transform.position += positon;
+        QuestObject[] questObjectList = QuestManager.GetInstance().questObjectList;
+        string showCaseName = questObjectList[questNumber].showCaseName;
+        string reliceName = questObjectList[questNumber].reliceName;
+
+        objectList[showCaseName].transform.position += positon;
+        RelicsList[reliceName].transform.position += positon;
+        SymbolList[questNumber].transform.position += positon;
     }
 
     public void InPutRelics(string relicsName,string objectName)
@@ -87,6 +94,8 @@ public class ObjectManager : MonoBehaviour
         GameObject go = (GameObject)Instantiate(Obj);
         go.transform.position = RelicsList[reliceName].gameObject.transform.position;
         go.transform.position += new Vector3(0,1.5f,0); 
+
+        SymbolList.Add(go);
 
         if (RelicsList[reliceName].gameObject.activeSelf == true)
         {
