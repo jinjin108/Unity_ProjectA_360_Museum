@@ -4,15 +4,23 @@ using UnityEngine;
 
 public class ObjectManager : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    #region instance
 
-    // Update is called once per frame
-    void Update()
+    private static ObjectManager instance = null;
+
+    public static ObjectManager GetInstance()
     {
-        
+        if(instance == null)
+        {
+            GameObject go = new GameObject("@ObjectManager");
+            instance = go.AddComponent<ObjectManager>();
+
+            DontDestroyOnLoad(go);
+        }
+        return instance;
+
     }
+    #endregion
+
+    
 }
