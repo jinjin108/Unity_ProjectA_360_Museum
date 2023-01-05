@@ -4,15 +4,8 @@ using UnityEngine;
 
 public class ShowCase : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    void EnterQuizScene()
     {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        ScenesManager.GetInstance().ChangeScene(Scene.Quiz);
     }
 }
