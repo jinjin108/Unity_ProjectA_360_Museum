@@ -6,6 +6,7 @@ using UnityEngine.SceneManagement;
 public enum Scene
 {
    Meun,
+   Main,
 }
 
 public class ScenesManager : MonoBehaviour
