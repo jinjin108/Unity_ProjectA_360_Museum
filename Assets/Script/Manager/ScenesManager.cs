@@ -7,6 +7,7 @@ public enum Scene
 {
    Meun,
    Main,
+   Quiz,
 }
 
 public class ScenesManager : MonoBehaviour
