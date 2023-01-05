@@ -4,15 +4,9 @@ using UnityEngine;
 
 public class MainScene : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+    private void Start() {
+        ObjectManager.GetInstance().CreateObject("ShowCase1");
+        ObjectManager.GetInstance().MoveShowcase("ShowCase1", new Vector3(-5, 0, 0));
+        ObjectManager.GetInstance().InPutRelics("QuestObject", "ShowCase1");
     }
 }
