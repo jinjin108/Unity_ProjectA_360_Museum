@@ -30,27 +30,36 @@ public class QuizManager : MonoBehaviour
     string curReliceName;
 
     VideoPlayer quizVideo;
-    Image quizImage;
+    Object spriteobj;
+    GameObject sprite;
 
     public void CurrentQuizStart()
     {
         GameObject quizVideogo = GameObject.FindGameObjectWithTag("VideoPlayer");
         quizVideo = quizVideogo.GetComponent<VideoPlayer>();
-        GetImage();
 
         quizVideo.clip = Resources.Load<VideoClip>($"Videos/"+quizVideoList[curQuizNumber]);
 
         switch (curQuizNumber)
         {
             case 0:
-                quizImage.sprite = Resources.Load<Sprite>($"Images/"+quizVideoList[curQuizNumber]);
+                spriteobj = Resources.Load($"Images/"+quizVideoList[curQuizNumber]);
+                sprite = (GameObject)Instantiate(spriteobj);
+                sprite.transform.localEulerAngles = new Vector3(0, -90f, 0);
+                sprite.transform.position = new Vector3(-10.93f, 2.49f, -1.36f);
+                break;
+            case 1:
+                spriteobj = Resources.Load($"Images/" + quizVideoList[curQuizNumber]);
+                sprite = (GameObject)Instantiate(spriteobj);
+                sprite.transform.localEulerAngles = new Vector3(31.77f, -81.04f, 0f);
+                sprite.transform.position = new Vector3(-8.99f, 0.5f, 1.49f);
+                break;
+            case 2:
+                spriteobj = Resources.Load($"Images/" + quizVideoList[curQuizNumber]);
+                sprite = (GameObject)Instantiate(spriteobj);
+                sprite.transform.localEulerAngles = new Vector3(0, -90f, 0.82f);
+                sprite.transform.position = new Vector3(-4.82f, 1.6f, 0.12f);
                 break;
         }
-    }
-
-    public void GetImage()
-    {
-        GameObject quizImagego = UIManager.GetInstance().GetUI("quizImage");
-        quizImage = quizImagego.GetComponentInChildren<Image>();
     }
 }
