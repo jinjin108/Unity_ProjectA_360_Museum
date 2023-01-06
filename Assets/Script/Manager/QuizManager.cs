@@ -34,6 +34,9 @@ public class QuizManager : MonoBehaviour
     VideoPlayer quizVideo;
     Object spriteobj;
     public GameObject sprite;
+    public string targetName;
+
+
 
     public void CurrentQuizStart()
     {
@@ -50,34 +53,35 @@ public class QuizManager : MonoBehaviour
                 sprite.transform.localEulerAngles = new Vector3(0, -90f, 0);
                 sprite.transform.position = new Vector3(-10.93f, 2.49f, -1.36f);
                 quizojpoint = new Vector3(-10.93f, 2.49f, -1.36f);
-                CreateQuizOj();
-
+                targetName = "target_1";
+                CreateTarget(targetName);
                 break;
             case 1:
                 spriteobj = Resources.Load($"Images/" + quizVideoList[curQuizNumber]);
                 sprite = (GameObject)Instantiate(spriteobj);
                 sprite.transform.localEulerAngles = new Vector3(31.77f, -81.04f, 0f);
                 sprite.transform.position = new Vector3(-8.99f, 0.5f, 1.49f);
-                CreateQuizOj();
-
+                targetName = "target_2";
+                CreateTarget(targetName);
                 break;
             case 2:
                 spriteobj = Resources.Load($"Images/" + quizVideoList[curQuizNumber]);
                 sprite = (GameObject)Instantiate(spriteobj);
                 sprite.transform.localEulerAngles = new Vector3(0, -90f, 0.82f);
                 sprite.transform.position = new Vector3(-4.82f, 1.6f, 0.12f);
-                CreateQuizOj();
-
+                targetName = "target_3";
+                CreateTarget(targetName);
                 break;
         }
     }
-    public GameObject CreateQuizOj()
+    public GameObject CreateTarget(string target)
     {
-        Object createQuizOj = Resources.Load("Object/QuizOj");
-        GameObject quizOj = (GameObject)Instantiate(createQuizOj);
-        quizOj.transform.position = quizojpoint;
+        Object targetObj = Resources.Load("Object/"+ target);
+        GameObject tar = (GameObject)Instantiate(targetObj);
 
-        return quizOj;
+        return tar;
     }
 
 }
+
+

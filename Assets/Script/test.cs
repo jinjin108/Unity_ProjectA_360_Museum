@@ -4,20 +4,12 @@ using UnityEngine;
 
 public class test : MonoBehaviour
 {
-    public Vector3 other;
-    public Vector3 gg;
-
     public GameObject target;
 
-
-    void Start()
-    {
-
-    }
-
-    // Update is called once per frame
     void Update()
     {
+        target = QuizManager.GetInstance().CreateTarget(QuizManager.GetInstance().targetName);
+
         OderVec3();
 
         if (Vector3.Distance(OderVec3(),OderVec4()) < 5f)
