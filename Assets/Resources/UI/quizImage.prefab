@@ -134,6 +134,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 479ca0fa0df2d4fb09f69c902594c1d2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  quizImage: {fileID: 0}
 --- !u!1 &5938238531274318476
 GameObject:
   m_ObjectHideFlags: 0
