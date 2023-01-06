@@ -12,9 +12,9 @@ public class test : MonoBehaviour
 
         OderVec3();
 
-        if (Vector3.Distance(OderVec3(),OderVec4()) < 5f)
+        if (Vector3.Distance(OderVec3(), OderVec4()) < 5f)
         {
-            Debug.Log("실행");
+
         }
         Debug.Log(Vector3.Distance(OderVec3(), OderVec4()));
 
@@ -35,4 +35,5 @@ public class test : MonoBehaviour
 
         return a;
     }
+
 }
