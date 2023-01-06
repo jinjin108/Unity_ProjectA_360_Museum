@@ -6,9 +6,13 @@ public class test : MonoBehaviour
 {
     public GameObject target;
 
-    void Update()
+    private void Awake()
     {
         target = QuizManager.GetInstance().CreateTarget(QuizManager.GetInstance().targetName);
+
+    }
+    void Update()
+    {
 
         OderVec3();
 
