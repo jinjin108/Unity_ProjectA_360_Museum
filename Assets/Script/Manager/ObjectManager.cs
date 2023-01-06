@@ -39,8 +39,15 @@ public class ObjectManager : MonoBehaviour
             InPutRelics(reliceName, showCaseName);
             CreateSymbol(reliceName);
         }
-
     }
+    //public GameObject CreateQuizOj(string quizojName)
+    //{
+    //    Object createQuizOj = Resources.Load("Resources/" + quizojName);
+    //    GameObject quizOj = (GameObject)Instantiate(createQuizOj);
+
+    //    return quizOj;
+    //}
+
 
     public void CreateObject(string objectName)
     {

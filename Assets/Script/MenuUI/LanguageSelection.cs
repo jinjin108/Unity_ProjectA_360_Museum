@@ -25,6 +25,7 @@ public class LanguageSelection : MonoBehaviour
     private void Start()
     {
 
+        GameObject.Find("txtinfo");
         GameObject.Find("gameinfoText");
         GameObject.Find("ButtonKo");
         GameObject.Find("ButtonEn");

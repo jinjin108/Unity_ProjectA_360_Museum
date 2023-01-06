@@ -29,9 +29,11 @@ public class QuizManager : MonoBehaviour
     public int curQuizNumber;
     string curReliceName;
 
+    Vector3 quizojpoint;
+
     VideoPlayer quizVideo;
     Object spriteobj;
-    GameObject sprite;
+    public GameObject sprite;
 
     public void CurrentQuizStart()
     {
@@ -47,19 +49,35 @@ public class QuizManager : MonoBehaviour
                 sprite = (GameObject)Instantiate(spriteobj);
                 sprite.transform.localEulerAngles = new Vector3(0, -90f, 0);
                 sprite.transform.position = new Vector3(-10.93f, 2.49f, -1.36f);
+                quizojpoint = new Vector3(-10.93f, 2.49f, -1.36f);
+                CreateQuizOj();
+
                 break;
             case 1:
                 spriteobj = Resources.Load($"Images/" + quizVideoList[curQuizNumber]);
                 sprite = (GameObject)Instantiate(spriteobj);
                 sprite.transform.localEulerAngles = new Vector3(31.77f, -81.04f, 0f);
                 sprite.transform.position = new Vector3(-8.99f, 0.5f, 1.49f);
+                CreateQuizOj();
+
                 break;
             case 2:
                 spriteobj = Resources.Load($"Images/" + quizVideoList[curQuizNumber]);
                 sprite = (GameObject)Instantiate(spriteobj);
                 sprite.transform.localEulerAngles = new Vector3(0, -90f, 0.82f);
                 sprite.transform.position = new Vector3(-4.82f, 1.6f, 0.12f);
+                CreateQuizOj();
+
                 break;
         }
     }
+    public GameObject CreateQuizOj()
+    {
+        Object createQuizOj = Resources.Load("Object/QuizOj");
+        GameObject quizOj = (GameObject)Instantiate(createQuizOj);
+        quizOj.transform.position = quizojpoint;
+
+        return quizOj;
+    }
+
 }
