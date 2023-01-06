@@ -109,8 +109,25 @@ public class LanguageSelection : MonoBehaviour
                 txtinfoText.text = str;
                 txtscore += 1;
                 break;
+            case 2:
+                LocalizationTable("info3");
+                txtinfoText.text = str;
+                txtscore += 1;
+                break;
+            case 3:
+                LocalizationTable("info3");
+                txtinfoText.text = str;
+                txtscore += 1;
+                break;
+            case 4:
+                LocalizationTable("info3");
+                txtinfoText.text = str;
+                txtscore += 1;
+                break;
+
             case 5:
-                ScenesManager.GetInstance().ChangeScene(Scene.Main);
+                txtinfoText.text = "박물관으로..";
+                Invoke("ChangMainScene",3f);
                 break;
 
         }
@@ -130,9 +147,24 @@ public class LanguageSelection : MonoBehaviour
                 txtinfoText.text = str;
                 txtscore -= 1;
                 break;
+            case 3:
+                LocalizationTable("info2");
+                txtinfoText.text = str;
+                txtscore -= 1;
+                break;
+            case 4:
+                LocalizationTable("info2");
+                txtinfoText.text = str;
+                txtscore -= 1;
+                break;
 
         }
 
+    }
+
+    void ChangMainScene()
+    {
+        ScenesManager.GetInstance().ChangeScene(Scene.Main);
     }
 
 }
