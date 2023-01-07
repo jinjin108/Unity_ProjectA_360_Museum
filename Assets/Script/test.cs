@@ -14,7 +14,7 @@ public class test : MonoBehaviour
     {
         if (Vector3.Distance(AnswerPosition(), ReadingGlassesPosition()) < 5f)
         {
-            Debug.Log("실 행");
+            StartCoroutine(QuizManager.GetInstance().NextQuiz());
         }
 
     }
