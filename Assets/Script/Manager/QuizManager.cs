@@ -36,6 +36,8 @@ public class QuizManager : MonoBehaviour
     public GameObject sprite;
     public string targetName;
 
+    public test ReadingGlasses = new test();
+
 
 
     public void CurrentQuizStart()
@@ -84,6 +86,8 @@ public class QuizManager : MonoBehaviour
     {
         Object targetObj = Resources.Load("Object/" + target);
         GameObject tar = (GameObject)Instantiate(targetObj);
+
+        ReadingGlasses.target = tar;
 
         return tar;
     }
