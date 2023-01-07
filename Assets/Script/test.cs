@@ -6,25 +6,16 @@ public class test : MonoBehaviour
 {
     public GameObject target;
 
-    private void Awake()
-    {
-        target = QuizManager.GetInstance().CreateTarget(QuizManager.GetInstance().targetName);
-
-    }
     void Update()
     {
-
-        OderVec3();
-
-        if (Vector3.Distance(OderVec3(), OderVec4()) < 5f)
+        if (Vector3.Distance(AnswerPosition(), ReadingGlassesPosition()) < 5f)
         {
-
+            Debug.Log("실 행");
         }
-        Debug.Log(Vector3.Distance(OderVec3(), OderVec4()));
 
     }
 
-    public Vector3 OderVec3()
+    public Vector3 AnswerPosition()
     {
         Vector3 a = target.transform.localEulerAngles;
         a.z = 0;
@@ -32,7 +23,7 @@ public class test : MonoBehaviour
         return a;
     }
 
-    public Vector3 OderVec4()
+    public Vector3 ReadingGlassesPosition()
     {
         Vector3 a = transform.localEulerAngles;
         a.z = 0;
