@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Video;
 using UnityEngine.UI;
+using UnityEngine.XR.Interaction.Toolkit;
 
 public class QuizManager : MonoBehaviour
 {
@@ -30,15 +31,31 @@ public class QuizManager : MonoBehaviour
     string curReliceName;
 
     Vector3 quizojpoint;
+    public Transform secondGameCamera;
+    private Vector3 destination;
+    public XRRayInteractor Interactor;
+    bool isSecondGame;
+    bool isMove;
 
     VideoPlayer quizVideo;
     Object spriteobj;
     public GameObject sprite;
-    public GameObject secondSprite;
+    GameObject secondGame;
     public string targetName;
 
     public test ReadingGlasses = new test();
 
+    private void Start() {
+        GameObject Interactorgo = GameObject.FindGameObjectWithTag("XROrigin");
+        Interactor = Interactorgo.GetComponentInChildren<XRRayInteractor>();
+    }
+
+    private void Update() {
+        
+        CheckInputFromeXR();
+
+        Move();
+    }
 
 
     public void CurrentQuizStart()
@@ -83,17 +100,13 @@ public class QuizManager : MonoBehaviour
         return sprite;
     }
 
-    public GameObject CreateSecondSprite()
+    public GameObject CreateSecondGame()
     {
-        spriteobj = Resources.Load($"Images/" + quizVideoList[curQuizNumber]);
-        secondSprite = (GameObject)Instantiate(spriteobj);
+        Object obj = Resources.Load($"Object/" + "game2");
+        secondGame = (GameObject)Instantiate(obj);
+        secondGameCamera = secondGame.GetComponentInChildren<Camera>().transform;
 
-        SpriteRenderer renderer = secondSprite.GetComponent<SpriteRenderer>();
-        renderer.color = new Color(1,1,1,0);
-        secondSprite.transform.position = sprite.transform.position;
-        secondSprite.transform.localEulerAngles = sprite.transform.localEulerAngles;
-
-        return secondSprite;
+        return secondGame;
     }
     
     public GameObject CreateTarget(string target)
@@ -111,23 +124,68 @@ public class QuizManager : MonoBehaviour
         yield return new WaitForSeconds(2f);
 
         ReadingGlasses.gameObject.SetActive(false);
+        sprite.SetActive(false);
 
-        CreateSecondSprite();
+        CreateSecondGame();
 
-        SpriteRenderer renderer = secondSprite.GetComponent<SpriteRenderer>();
+        isSecondGame = true;
 
-        float i = 0f;
+        
 
-        while (i < 1)
+        // float i = 0f;
+
+        // while (i < 1)
+        //     {
+        //         i += 0.1f;
+        //         Debug.Log(i);
+        //         Color c = renderer.color;
+        //         c.a = i;
+        //         renderer.color = c;
+        //         yield return new WaitForSeconds(0.02f);
+        //     }
+
+    }
+
+    public void CheckInputFromeXR()
+    {
+        if (isSecondGame == false)
+        {
+            return;
+        }
+
+        if (Interactor == null)
+        {
+            return;
+        }
+
+        RaycastHit hit;
+        if (Interactor.TryGetCurrent3DRaycastHit(out hit))
+        {
+            SetDestination(hit.point);
+        }
+    }
+
+    private void SetDestination(Vector3 dest)
+    {
+        destination = dest;
+        destination.x = -9f;
+        isMove = true;
+    }
+
+    private void Move()
+    {
+        if (isMove)
+        {
+            if (Vector3.Distance(destination, transform.position) <= 0.1f)
             {
-                i += 0.1f;
-                Debug.Log(i);
-                Color c = renderer.color;
-                c.a = i;
-                renderer.color = c;
-                yield return new WaitForSeconds(0.02f);
+                isMove = false;
+                return;
             }
 
+            //var dir = destination - transform.position;
+            //chracter.transform.forward = -dir;
+            secondGameCamera.transform.position = destination;
+        }
     }
 
 }
