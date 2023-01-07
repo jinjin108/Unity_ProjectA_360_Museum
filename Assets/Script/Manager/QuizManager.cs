@@ -34,6 +34,7 @@ public class QuizManager : MonoBehaviour
     VideoPlayer quizVideo;
     Object spriteobj;
     public GameObject sprite;
+    public GameObject secondSprite;
     public string targetName;
 
     public test ReadingGlasses = new test();
@@ -81,6 +82,19 @@ public class QuizManager : MonoBehaviour
 
         return sprite;
     }
+
+    public GameObject CreateSecondSprite()
+    {
+        spriteobj = Resources.Load($"Images/" + quizVideoList[curQuizNumber]);
+        secondSprite = (GameObject)Instantiate(spriteobj);
+
+        SpriteRenderer renderer = secondSprite.GetComponent<SpriteRenderer>();
+        renderer.color = new Color(1,1,1,0);
+        secondSprite.transform.position = sprite.transform.position;
+        secondSprite.transform.localEulerAngles = sprite.transform.localEulerAngles;
+
+        return secondSprite;
+    }
     
     public GameObject CreateTarget(string target)
     {
@@ -92,9 +106,27 @@ public class QuizManager : MonoBehaviour
         return tar;
     }
 
-    public void QuizGame2()
+    public IEnumerator NextQuiz()
     {
-        sprite.SetActive(false);
+        yield return new WaitForSeconds(2f);
+
+        ReadingGlasses.gameObject.SetActive(false);
+
+        CreateSecondSprite();
+
+        SpriteRenderer renderer = secondSprite.GetComponent<SpriteRenderer>();
+
+        float i = 0f;
+
+        while (i < 1)
+            {
+                i += 0.1f;
+                Debug.Log(i);
+                Color c = renderer.color;
+                c.a = i;
+                renderer.color = c;
+                yield return new WaitForSeconds(0.02f);
+            }
 
     }
 
