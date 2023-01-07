@@ -6,6 +6,10 @@ public class test : MonoBehaviour
 {
     public GameObject target;
 
+    private void Start() {
+        QuizManager.GetInstance().ReadingGlasses = this;
+    }
+
     void Update()
     {
         if (Vector3.Distance(AnswerPosition(), ReadingGlassesPosition()) < 5f)
