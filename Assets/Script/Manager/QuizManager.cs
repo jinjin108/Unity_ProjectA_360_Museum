@@ -48,8 +48,7 @@ public class QuizManager : MonoBehaviour
         switch (curQuizNumber)
         {
             case 0:
-                spriteobj = Resources.Load($"Images/" + quizVideoList[curQuizNumber]);
-                sprite = (GameObject)Instantiate(spriteobj);
+                CreateSprite();
                 sprite.transform.localEulerAngles = new Vector3(0, -90f, 0);
                 sprite.transform.position = new Vector3(-10.93f, 2.49f, -1.36f);
                 quizojpoint = new Vector3(-10.93f, 2.49f, -1.36f);
@@ -57,16 +56,14 @@ public class QuizManager : MonoBehaviour
                 CreateTarget(targetName);
                 break;
             case 1:
-                spriteobj = Resources.Load($"Images/" + quizVideoList[curQuizNumber]);
-                sprite = (GameObject)Instantiate(spriteobj);
+                CreateSprite();
                 sprite.transform.localEulerAngles = new Vector3(31.77f, -81.04f, 0f);
                 sprite.transform.position = new Vector3(-8.99f, 0.5f, 1.49f);
                 targetName = "target_2";
                 CreateTarget(targetName);
                 break;
             case 2:
-                spriteobj = Resources.Load($"Images/" + quizVideoList[curQuizNumber]);
-                sprite = (GameObject)Instantiate(spriteobj);
+                CreateSprite();
                 sprite.transform.localEulerAngles = new Vector3(0, -90f, 0.82f);
                 sprite.transform.position = new Vector3(-4.82f, 1.6f, 0.12f);
                 targetName = "target_3";
@@ -74,6 +71,15 @@ public class QuizManager : MonoBehaviour
                 break;
         }
     }
+
+    public GameObject CreateSprite()
+    {
+        spriteobj = Resources.Load($"Images/" + quizVideoList[curQuizNumber]);
+        sprite = (GameObject)Instantiate(spriteobj);
+
+        return sprite;
+    }
+    
     public GameObject CreateTarget(string target)
     {
         Object targetObj = Resources.Load("Object/" + target);
