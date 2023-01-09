@@ -31,6 +31,7 @@ public class QuizManager : MonoBehaviour
     string curReliceName;
 
     Vector3 quizojpoint;
+    Vector3 checkPosition;
     public Transform secondGameCamera;
     private Vector3 destination;
     public XRRayInteractor Interactor;
@@ -41,12 +42,15 @@ public class QuizManager : MonoBehaviour
     Object spriteobj;
     public GameObject sprite;
     GameObject secondGame;
+    public GameObject relics = null;
     public string targetName;
 
     public test ReadingGlasses = new test();
 
     private void Update() {
         
+        CheckSecondAnswerPosition();
+
         CheckInputFromeXR();
 
         Move();
@@ -101,6 +105,8 @@ public class QuizManager : MonoBehaviour
         secondGame = (GameObject)Instantiate(obj);
         secondGameCamera = secondGame.GetComponentInChildren<Camera>().transform;
 
+        CreateSecondGameObject();
+
         return secondGame;
     }
     
@@ -114,6 +120,18 @@ public class QuizManager : MonoBehaviour
         return tar;
     }
 
+    public void CreateSecondGameObject()
+    {
+        float x = -10.5f;
+        float y = Random.Range(-2f, 6f);
+        float z = Random.Range(0f, 9f);
+
+        Vector3 ran = new Vector3(x, y, z);
+
+        Object relicsObj = Resources.Load($"Object/" + quizVideoList[curQuizNumber]);
+        relics = (GameObject)Instantiate(relicsObj, ran, Quaternion.identity);
+    }
+
     public IEnumerator NextQuiz()
     {
         yield return new WaitForSeconds(2f);
@@ -124,6 +142,7 @@ public class QuizManager : MonoBehaviour
         CreateSecondGame();
 
         isSecondGame = true;
+
 
         
 
@@ -143,8 +162,11 @@ public class QuizManager : MonoBehaviour
 
     public void CheckInputFromeXR()
     {
-        GameObject Interactorgo = GameObject.FindGameObjectWithTag("XROrigin");
-        Interactor = Interactorgo.GetComponentInChildren<XRRayInteractor>();
+        if (GameObject.FindGameObjectWithTag("XROrigin") != null)
+        {
+            GameObject Interactorgo = GameObject.FindGameObjectWithTag("XROrigin");
+            Interactor = Interactorgo.GetComponentInChildren<XRRayInteractor>();
+        }
 
         if (isSecondGame == false)
         {
@@ -182,8 +204,28 @@ public class QuizManager : MonoBehaviour
 
             //var dir = destination - transform.position;
             //chracter.transform.forward = -dir;
-            secondGameCamera.transform.position = destination;
+            if (secondGameCamera != null)
+            {
+                secondGameCamera.transform.position = destination;
+            }
+
         }
+    }
+
+    public void CheckSecondAnswerPosition()
+    {
+        if (relics == null)
+        {
+            return;
+        }
+            checkPosition = secondGameCamera.transform.position;
+            checkPosition.x = relics.transform.position.x;
+
+        if (Vector3.Distance(checkPosition, relics.transform.position) < 0.5f)
+            {
+            ScenesManager.GetInstance().ChangeScene(Scene.Main);
+            relics = null;
+            }
     }
 
 }
