@@ -13,7 +13,6 @@ public class LanguageSelection : MonoBehaviour
     int txtscore = 0;
 
     [SerializeField] private PostProcessVolume ppv;
-    [SerializeField] private PostProcessProfile ppf;
 
     [SerializeField] private GameObject test;
 
@@ -130,7 +129,7 @@ public class LanguageSelection : MonoBehaviour
                 break;
 
             case 5:
-                StartCoroutine("FostFadeOut");
+                StartCoroutine("FostFadeIn");
                 txtinfoText.text = "박물관으로..";
                 Invoke("ChangMainScene",3f);
                 break;
@@ -168,7 +167,7 @@ public class LanguageSelection : MonoBehaviour
 
     }
 
-    IEnumerator FostFadeOut()
+    IEnumerator FostFadeIn()
     {
         while (bl.intensity.value < 1f)
         {
