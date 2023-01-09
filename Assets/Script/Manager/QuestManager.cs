@@ -34,5 +34,19 @@ public class QuestManager : MonoBehaviour
         new Sumacsae("Sumacsae_3"),
     };
 
+    public void ClearGame()
+    {
+
+        for (int i = 0; i < sumacsaesList.Length; i++)
+        {
+            if (sumacsaesList[i].isClear == false)
+            {
+                return;
+            }
+        }
+
+        Debug.Log("Open The Door");
+
+    }
     
 }
