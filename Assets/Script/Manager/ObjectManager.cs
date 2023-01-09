@@ -25,6 +25,7 @@ public class ObjectManager : MonoBehaviour
     public Dictionary<string, GameObject> objectList = new Dictionary<string, GameObject>();
     Dictionary<string, GameObject> RelicsList = new Dictionary<string, GameObject>();
     List<GameObject> SymbolList = new List<GameObject>();
+    Dictionary<string, GameObject> SumacsaeList = new Dictionary<string, GameObject>();
 
     public void CreateQuest()
     {
@@ -77,6 +78,17 @@ public class ObjectManager : MonoBehaviour
         SymbolList[questNumber].transform.position += positon;
     }
 
+    public void MoveSumacsae(int questNumber ,Vector3 positon)
+    {
+        if (SumacsaeList.ContainsKey(QuestManager.sumacsaesList[questNumber].name) == false)
+        {
+            return;
+        }
+        SumacsaeList[QuestManager.sumacsaesList[questNumber].name].transform.position = positon;
+
+    }
+
+
     public void InPutRelics(string relicsName,string objectName, int num)
     {
         if (RelicsList.ContainsKey(relicsName) == false)
@@ -115,6 +127,23 @@ public class ObjectManager : MonoBehaviour
         }
     }
 
+    public void CreateSumacsae()
+    {
+        for (int i = 0; i < QuestManager.sumacsaesList.Length; i++)
+        {
+            if (QuestManager.sumacsaesList[i].isClear != false)
+            {
+            Object Obj = Resources.Load("Object/" + QuestManager.sumacsaesList[i].name);
+            GameObject go = (GameObject)Instantiate(Obj);
+
+            SumacsaeList.Add(QuestManager.sumacsaesList[i].name, go);
+            }
+        }
+
+
+
+    }
+
     public GameObject GetObject(string objectName)
     {
         if (objectList.ContainsKey(objectName))
@@ -129,5 +158,6 @@ public class ObjectManager : MonoBehaviour
         objectList.Clear();
         RelicsList.Clear();
         SymbolList.Clear();
+        SumacsaeList.Clear();
     }
 }
