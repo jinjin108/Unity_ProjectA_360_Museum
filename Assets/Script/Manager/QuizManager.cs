@@ -101,8 +101,27 @@ public class QuizManager : MonoBehaviour
 
     public GameObject CreateSecondGame()
     {
-        Object obj = Resources.Load($"Object/" + "game2");
+        Object obj = Resources.Load($"Object/" + "SecondGame");
         secondGame = (GameObject)Instantiate(obj);
+        MeshRenderer secondGameCube = secondGame.GetComponentInChildren<MeshRenderer>();
+        Material mat = secondGameCube.material;
+
+        switch (curQuizNumber)
+        {
+            case 0:
+            Texture tex_1 = Resources.Load("Images/CulturalHeritage_1",typeof(Texture)) as Texture;
+            mat.SetTexture("_MainTex",tex_1);
+            break;
+            case 1:
+            Texture tex_2 = Resources.Load("Images/CulturalHeritage_3",typeof(Texture)) as Texture;
+            mat.SetTexture("_MainTex",tex_2);
+            break;
+            case 2:
+            Texture tex_3 = Resources.Load("Images/CulturalHeritage_2",typeof(Texture)) as Texture;
+            mat.SetTexture("_MainTex",tex_3);
+            break;
+        }
+
         secondGameCamera = secondGame.GetComponentInChildren<Camera>().transform;
 
         CreateSecondGameObject();
