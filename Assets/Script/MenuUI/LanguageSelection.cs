@@ -24,7 +24,8 @@ public class LanguageSelection : MonoBehaviour
     [SerializeField] private Button NextBnt;
     [SerializeField] private Button BackBnt;
     [SerializeField] private Material skybox;
-     Bloom bl;
+
+    Bloom bl;
     private void Start()
     {
         test.SetActive(false);
@@ -132,7 +133,8 @@ public class LanguageSelection : MonoBehaviour
             case 5:
                 StartCoroutine("FostFadeIn");
                 txtinfoText.text = "박물관으로..";
-                Invoke("ChangMainScene",3f);
+                Invoke("ChangMainScene", 3f);
+                MenuAni.GetInstance().StartRun();
                 break;
 
         }

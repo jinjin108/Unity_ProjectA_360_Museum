@@ -23,9 +23,10 @@ public class MenuAni : MonoBehaviour
     #endregion
 
     public Animator ani;
-    void Start()
+    void Awake()
     {
-        ani = GetComponent<Animator>();
+        GameObject player = GameObject.FindGameObjectWithTag("Player");
+        ani = player.GetComponent<Animator>();
         ani.SetBool("Walk", false);
         ani.SetBool("Run", false);
 
