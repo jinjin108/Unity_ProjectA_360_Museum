@@ -223,8 +223,10 @@ public class QuizManager : MonoBehaviour
 
         if (Vector3.Distance(checkPosition, relics.transform.position) < 0.5f)
             {
-            ScenesManager.GetInstance().ChangeScene(Scene.Main);
+            QuestManager.questObjectList[curQuizNumber].isDone = true;
             relics = null;
+
+            ScenesManager.GetInstance().ChangeScene(Scene.Main);
             }
     }
 
