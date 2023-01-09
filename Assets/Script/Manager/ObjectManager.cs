@@ -22,7 +22,7 @@ public class ObjectManager : MonoBehaviour
     }
     #endregion
 
-    public Dictionary<string, GameObject> objectList = new Dictionary<string, GameObject>();
+    public Dictionary<string, GameObject> showCaseList = new Dictionary<string, GameObject>();
     Dictionary<string, GameObject> RelicsList = new Dictionary<string, GameObject>();
     List<GameObject> SymbolList = new List<GameObject>();
     Dictionary<string, GameObject> SumacsaeList = new Dictionary<string, GameObject>();
@@ -52,7 +52,7 @@ public class ObjectManager : MonoBehaviour
 
     public void CreateObject(string objectName)
     {
-        if (objectList.ContainsKey(objectName) == false)
+        if (showCaseList.ContainsKey(objectName) == false)
         {
             Object Obj = Resources.Load("Object/" + objectName);
             GameObject go = (GameObject)Instantiate(Obj);
@@ -61,10 +61,10 @@ public class ObjectManager : MonoBehaviour
             if (index > 0) 
             go.name = go.name.Substring(0, index);
 
-            objectList.Add(objectName, go);
+            showCaseList.Add(objectName, go);
         }
         else
-        objectList[objectName].SetActive(true);
+        showCaseList[objectName].SetActive(true);
     }
 
     public void MoveShowcase(int questNumber ,Vector3 positon)
@@ -73,7 +73,7 @@ public class ObjectManager : MonoBehaviour
         string showCaseName = questObjectList[questNumber].showCaseName;
         string reliceName = questObjectList[questNumber].reliceName;
 
-        objectList[showCaseName].transform.position += positon;
+        showCaseList[showCaseName].transform.position += positon;
         RelicsList[reliceName].transform.position += positon;
         SymbolList[questNumber].transform.position += positon;
     }
@@ -96,10 +96,10 @@ public class ObjectManager : MonoBehaviour
             Object Obj = Resources.Load("Object/" + relicsName);
             GameObject go = (GameObject)Instantiate(Obj);
 
-            MeshRenderer window = objectList[objectName].GetComponentInChildren<MeshRenderer>();
+            MeshRenderer relicsPoint = showCaseList[objectName].GetComponentInChildren<MeshRenderer>();
 
-            go.transform.position = window.transform.position;
-            go.transform.position = new Vector3(0,1.5f,0);
+            go.transform.position = relicsPoint.transform.position;
+            //go.transform.position = new Vector3(0,1f,0);
 
             if (QuestManager.questObjectList[num].isDone == false)
             {
@@ -146,8 +146,8 @@ public class ObjectManager : MonoBehaviour
 
     public GameObject GetObject(string objectName)
     {
-        if (objectList.ContainsKey(objectName))
-            return objectList[objectName];
+        if (showCaseList.ContainsKey(objectName))
+            return showCaseList[objectName];
 
         return null;
 
@@ -155,7 +155,7 @@ public class ObjectManager : MonoBehaviour
 
     public void ClearList() 
     {                       
-        objectList.Clear();
+        showCaseList.Clear();
         RelicsList.Clear();
         SymbolList.Clear();
         SumacsaeList.Clear();
