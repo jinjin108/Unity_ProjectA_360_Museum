@@ -54,6 +54,7 @@ public class LanguageSelection : MonoBehaviour
         test.SetActive(true);
 
         RenderSettings.skybox = default;
+        MenuAni.GetInstance().StartWalk();
     }
 
     public void UserLocalizationen()
@@ -66,11 +67,11 @@ public class LanguageSelection : MonoBehaviour
 
         LocalizationBntFalse();
         LocalizationTable("GameInfo");
+        txtinfo.text = str;
         test.SetActive(true);
 
-
-        txtinfo.text = str;
-
+        RenderSettings.skybox = default;
+        MenuAni.GetInstance().StartWalk();
 
     }
 
