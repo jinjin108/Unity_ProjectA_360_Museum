@@ -28,7 +28,7 @@ public class ObjectManager : MonoBehaviour
 
     public void CreateQuest()
     {
-        QuestObject[] questObjectList = QuestManager.GetInstance().questObjectList;
+        QuestObject[] questObjectList = QuestManager.questObjectList;
 
         for (int i = 0; i < questObjectList.Length; i++)
         {
@@ -36,7 +36,7 @@ public class ObjectManager : MonoBehaviour
             string reliceName = questObjectList[i].reliceName;
 
             CreateObject(showCaseName);
-            InPutRelics(reliceName, showCaseName);
+            InPutRelics(reliceName, showCaseName, i);
             CreateSymbol(reliceName);
         }
     }
@@ -68,7 +68,7 @@ public class ObjectManager : MonoBehaviour
 
     public void MoveShowcase(int questNumber ,Vector3 positon)
     {
-        QuestObject[] questObjectList = QuestManager.GetInstance().questObjectList;
+        QuestObject[] questObjectList = QuestManager.questObjectList;
         string showCaseName = questObjectList[questNumber].showCaseName;
         string reliceName = questObjectList[questNumber].reliceName;
 
@@ -77,7 +77,7 @@ public class ObjectManager : MonoBehaviour
         SymbolList[questNumber].transform.position += positon;
     }
 
-    public void InPutRelics(string relicsName,string objectName)
+    public void InPutRelics(string relicsName,string objectName, int num)
     {
         if (RelicsList.ContainsKey(relicsName) == false)
         {
@@ -87,8 +87,7 @@ public class ObjectManager : MonoBehaviour
             go.transform.position = objectList[objectName].gameObject.transform.position;
             go.transform.position = new Vector3(0,1f,0);
 
-            QuestObject questObject = go.GetComponent<QuestObject>();
-            if (questObject.isDone == false)
+            if (QuestManager.questObjectList[num].isDone == false)
             {
                 go.SetActive(false);
             }
@@ -107,7 +106,7 @@ public class ObjectManager : MonoBehaviour
         go.transform.position += new Vector3(0,1.5f,0); 
 
         SymbolList.Add(go);
-
+        
         if (RelicsList[reliceName].gameObject.activeSelf == true)
         {
             go.SetActive(false);
