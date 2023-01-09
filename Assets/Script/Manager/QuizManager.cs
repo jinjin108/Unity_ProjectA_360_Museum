@@ -45,11 +45,6 @@ public class QuizManager : MonoBehaviour
 
     public test ReadingGlasses = new test();
 
-    private void Start() {
-        GameObject Interactorgo = GameObject.FindGameObjectWithTag("XROrigin");
-        Interactor = Interactorgo.GetComponentInChildren<XRRayInteractor>();
-    }
-
     private void Update() {
         
         CheckInputFromeXR();
@@ -148,6 +143,9 @@ public class QuizManager : MonoBehaviour
 
     public void CheckInputFromeXR()
     {
+        GameObject Interactorgo = GameObject.FindGameObjectWithTag("XROrigin");
+        Interactor = Interactorgo.GetComponentInChildren<XRRayInteractor>();
+
         if (isSecondGame == false)
         {
             return;
