@@ -13,7 +13,8 @@ public class LanguageSelection : MonoBehaviour
     int txtscore = 0;
 
     [SerializeField] private PostProcessVolume ppv;
-    [SerializeField] private PostProcessProfile ppf;
+
+    [SerializeField] private GameObject test;
 
     [SerializeField] private TMP_Text txtinfo;
     [SerializeField] private TMP_Text txtinfoText;
@@ -26,7 +27,7 @@ public class LanguageSelection : MonoBehaviour
      Bloom bl;
     private void Start()
     {
-
+        test.SetActive(false);
         txtinfo.gameObject.SetActive(false);
         txtinfoText.gameObject.SetActive(false);
         NextBnt.gameObject.SetActive(false);
@@ -50,13 +51,10 @@ public class LanguageSelection : MonoBehaviour
         LocalizationBntFalse();
         LocalizationTable("GameInfo");
         txtinfo.text = str;
-        while (bl.intensity.value < 100f)
-        {
-            bl.intensity.value += 0.0001f;
-        }
-;
+        test.SetActive(true);
 
-
+        RenderSettings.skybox = default;
+        MenuAni.GetInstance().StartWalk();
     }
 
     public void UserLocalizationen()
@@ -69,10 +67,11 @@ public class LanguageSelection : MonoBehaviour
 
         LocalizationBntFalse();
         LocalizationTable("GameInfo");
-
-
         txtinfo.text = str;
+        test.SetActive(true);
 
+        RenderSettings.skybox = default;
+        MenuAni.GetInstance().StartWalk();
 
     }
 
@@ -131,6 +130,7 @@ public class LanguageSelection : MonoBehaviour
                 break;
 
             case 5:
+                StartCoroutine("FostFadeIn");
                 txtinfoText.text = "박물관으로..";
                 Invoke("ChangMainScene",3f);
                 break;
@@ -163,6 +163,18 @@ public class LanguageSelection : MonoBehaviour
                 txtscore -= 1;
                 break;
 
+        }
+
+
+    }
+
+    IEnumerator FostFadeIn()
+    {
+        while (bl.intensity.value < 1f)
+        {
+           bl.intensity.value += 0.01f;
+            
+           yield return new WaitForSeconds(0.1f);
         }
 
     }
