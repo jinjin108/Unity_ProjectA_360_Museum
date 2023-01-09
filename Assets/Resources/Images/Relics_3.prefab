@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5243604001960584883}
   - component: {fileID: 2567510453467194694}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Relics_3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
