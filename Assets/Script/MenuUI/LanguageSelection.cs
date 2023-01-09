@@ -19,19 +19,22 @@ public class LanguageSelection : MonoBehaviour
     [SerializeField] private Button StartBnt;
     [SerializeField] private Button NextBnt;
     [SerializeField] private Button BackBnt;
+    [SerializeField] private Material skybox;
+
+
 
 
 
     private void Start()
     {
 
-        GameObject.Find("txtinfo");
-        GameObject.Find("gameinfoText");
-        GameObject.Find("ButtonKo");
-        GameObject.Find("ButtonEn");
-        GameObject.Find("GameStart");
-        GameObject.Find("Next");
-        GameObject.Find("Back");
+        //GameObject.Find("txtinfo");
+        //GameObject.Find("gameinfoText");
+        //GameObject.Find("ButtonKo");
+        //GameObject.Find("ButtonEn");
+        //GameObject.Find("GameStart");
+        //GameObject.Find("Next");
+        //GameObject.Find("Back");
 
 
         txtinfo.gameObject.SetActive(false);
@@ -40,6 +43,7 @@ public class LanguageSelection : MonoBehaviour
         BackBnt.gameObject.SetActive(false);
         LocalizationBntFalse();
 
+        RenderSettings.skybox = skybox;
 
     }
     public void UserLocalizationko()
