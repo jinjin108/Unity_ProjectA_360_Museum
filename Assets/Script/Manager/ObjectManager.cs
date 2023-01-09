@@ -84,8 +84,10 @@ public class ObjectManager : MonoBehaviour
             Object Obj = Resources.Load("Object/" + relicsName);
             GameObject go = (GameObject)Instantiate(Obj);
 
-            go.transform.position = objectList[objectName].gameObject.transform.position;
-            go.transform.position = new Vector3(0,1f,0);
+            MeshRenderer window = objectList[objectName].GetComponentInChildren<MeshRenderer>();
+
+            go.transform.position = window.transform.position;
+            go.transform.position = new Vector3(0,1.5f,0);
 
             if (QuestManager.questObjectList[num].isDone == false)
             {
