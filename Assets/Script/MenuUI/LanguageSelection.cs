@@ -6,11 +6,14 @@ using TMPro;
 using UnityEngine.Localization;
 using UnityEngine.Localization.Settings;
 using UnityEngine.ResourceManagement.AsyncOperations;
-
+using UnityEngine.Rendering.PostProcessing;
 public class LanguageSelection : MonoBehaviour
 {
     string str;
     int txtscore = 0;
+
+    [SerializeField] private PostProcessVolume ppv;
+    [SerializeField] private PostProcessProfile ppf;
 
     [SerializeField] private TMP_Text txtinfo;
     [SerializeField] private TMP_Text txtinfoText;
@@ -20,22 +23,9 @@ public class LanguageSelection : MonoBehaviour
     [SerializeField] private Button NextBnt;
     [SerializeField] private Button BackBnt;
     [SerializeField] private Material skybox;
-
-
-
-
-
+     Bloom bl;
     private void Start()
     {
-
-        //GameObject.Find("txtinfo");
-        //GameObject.Find("gameinfoText");
-        //GameObject.Find("ButtonKo");
-        //GameObject.Find("ButtonEn");
-        //GameObject.Find("GameStart");
-        //GameObject.Find("Next");
-        //GameObject.Find("Back");
-
 
         txtinfo.gameObject.SetActive(false);
         txtinfoText.gameObject.SetActive(false);
@@ -44,6 +34,9 @@ public class LanguageSelection : MonoBehaviour
         LocalizationBntFalse();
 
         RenderSettings.skybox = skybox;
+
+
+        ppv.profile.TryGetSettings(out bl);
 
     }
     public void UserLocalizationko()
@@ -57,6 +50,11 @@ public class LanguageSelection : MonoBehaviour
         LocalizationBntFalse();
         LocalizationTable("GameInfo");
         txtinfo.text = str;
+        while (bl.intensity.value < 100f)
+        {
+            bl.intensity.value += 0.0001f;
+        }
+;
 
 
     }
@@ -71,6 +69,8 @@ public class LanguageSelection : MonoBehaviour
 
         LocalizationBntFalse();
         LocalizationTable("GameInfo");
+
+
         txtinfo.text = str;
 
 
