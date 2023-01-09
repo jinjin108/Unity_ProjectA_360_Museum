@@ -7,7 +7,7 @@ public class ShowCase : MonoBehaviour
 
     public void EnterQuizScene()
     {
-        var showCaseNameList = new List<string>(ObjectManager.GetInstance().objectList.Keys);
+        var showCaseNameList = new List<string>(ObjectManager.GetInstance().showCaseList.Keys);
 
         for (int i = 0; i < showCaseNameList.Count; i++)
         {
