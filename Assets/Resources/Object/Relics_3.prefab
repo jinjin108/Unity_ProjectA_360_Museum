@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 7242065069467699807}
   - component: {fileID: 7242065069467699777}
   - component: {fileID: 7242065069467699806}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Model
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -25,8 +25,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7242065069467699804}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.09836292, y: 0.45193434, z: 0.02863121}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -94,7 +94,7 @@ GameObject:
   - component: {fileID: 7242065071159036662}
   - component: {fileID: 7242065071159036663}
   - component: {fileID: 7242065071159036660}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Relics_3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
