@@ -22,9 +22,11 @@ public class QuestManager : MonoBehaviour
     }
     #endregion
 
-    public QuestObject[] questObjectList = {
+    public static QuestObject[] questObjectList = {
         new QuestObject("ShowCase1", "Relics_1"),
         new QuestObject("ShowCase2", "Relics_2"),
         new QuestObject("ShowCase3", "Relics_3")
     };
+
+    
 }
