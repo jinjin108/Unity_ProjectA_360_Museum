@@ -15,7 +15,7 @@ public class MainScene : MonoBehaviour
         bl.intensity.value = 100f;
 
         ObjectManager.GetInstance().CreateQuest();
-        ObjectManager.GetInstance().MoveShowcase(0, new Vector3(-5f, 0, 0));
+        ObjectManager.GetInstance().MoveShowcase(0, new Vector3(10.56f, 3f, -3.47f));
         ObjectManager.GetInstance().MoveShowcase(2, new Vector3(5f, 0, 0));
         ObjectManager.GetInstance().CreateSumacsae();
         ObjectManager.GetInstance().MoveSumacsae(0, new Vector3(-5f, 5f, 0));
