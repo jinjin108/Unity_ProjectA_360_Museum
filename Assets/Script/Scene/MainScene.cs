@@ -17,6 +17,7 @@ public class MainScene : MonoBehaviour
         ObjectManager.GetInstance().CreateQuest();
         ObjectManager.GetInstance().MoveShowcase(0, new Vector3(10.56f, 2.815307f, -3.47f));
         ObjectManager.GetInstance().MoveShowcase(2, new Vector3(-6f, 4f, 19f));
+        ObjectManager.GetInstance().MoveSymboll(0, new Vector3(0,3f,0));
         ObjectManager.GetInstance().CreateSumacsae();
         ObjectManager.GetInstance().MoveSumacsae(0, new Vector3(-5f, 5f, 0));
         ObjectManager.GetInstance().MoveSumacsae(1, new Vector3(0, 5f, 0));
