@@ -18,7 +18,9 @@ public class MainScene : MonoBehaviour
         ObjectManager.GetInstance().MoveShowcase(0, new Vector3(-5f, 0, 0));
         ObjectManager.GetInstance().MoveShowcase(2, new Vector3(5f, 0, 0));
         ObjectManager.GetInstance().CreateSumacsae();
-        ObjectManager.GetInstance().MoveSumacsae(0, new Vector3(0, 5f, 0));
+        ObjectManager.GetInstance().MoveSumacsae(0, new Vector3(-5f, 5f, 0));
+        ObjectManager.GetInstance().MoveSumacsae(1, new Vector3(0, 5f, 0));
+        ObjectManager.GetInstance().MoveSumacsae(2, new Vector3(5f, 5f, 0));
 
         QuestManager.GetInstance().ClearGame();
 
