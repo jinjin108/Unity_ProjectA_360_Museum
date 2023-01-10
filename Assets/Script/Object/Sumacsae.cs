@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Sumacsae : MonoBehaviour
+public class Sumacsae
 {
     public string name;
     public bool isClear;
