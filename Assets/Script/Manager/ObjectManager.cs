@@ -36,7 +36,7 @@ public class ObjectManager : MonoBehaviour
             string showCaseName = questObjectList[i].showCaseName;
             string reliceName = questObjectList[i].reliceName;
 
-            CreateObject(showCaseName);
+            CreateObject(showCaseName, i, questObjectList[i].isDone);
             InPutRelics(reliceName, showCaseName, i);
             CreateSymbol(reliceName);
         }
@@ -50,13 +50,16 @@ public class ObjectManager : MonoBehaviour
     //}
 
 
-    public void CreateObject(string objectName)
+    public void CreateObject(string objectName, int num, bool isDone)
     {
         if (showCaseList.ContainsKey(objectName) == false)
         {
             Object Obj = Resources.Load("Object/" + objectName);
             GameObject go = (GameObject)Instantiate(Obj);
-            
+            ShowCase goShowCase = go.GetComponent<ShowCase>();
+
+            goShowCase.isDone = isDone;
+
             int index = go.name.IndexOf("(Clone)");
             if (index > 0) 
             go.name = go.name.Substring(0, index);
