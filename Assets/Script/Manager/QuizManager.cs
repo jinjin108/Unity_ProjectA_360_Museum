@@ -52,10 +52,6 @@ public class QuizManager : MonoBehaviour
     public AutoExposure ae;
     public ColorGrading cg;
 
-    private void Start()
-    {
-
-    }
     private void Update()
     {
 

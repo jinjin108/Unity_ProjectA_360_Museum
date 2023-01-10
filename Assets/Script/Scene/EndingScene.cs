@@ -1,11 +1,15 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+using UnityEngine.SceneManagement;
+
+
 
 public class EndingScene : MonoBehaviour
 {
-    [SerializeField]
-    UIEndingScene uIEndingScene;
+    //[SerializeField]
+    //UIEndingScene uIEndingScene;
 
     private void Start()
     {
@@ -17,6 +21,6 @@ public class EndingScene : MonoBehaviour
 
     public void SkipCredit()
     {
-        ScenesManager.GetInstance().ChangeScene(Scene.Meun);
+        ScenesManager.GetInstance().ChangeScene(Scene.Menu);
     }
 }

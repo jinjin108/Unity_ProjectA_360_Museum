@@ -5,9 +5,10 @@ using UnityEngine.SceneManagement;
 
 public enum Scene
 {
-   Meun,
+   Menu,
    Main,
    Quiz,
+   Ending,
 }
 
 public class ScenesManager : MonoBehaviour

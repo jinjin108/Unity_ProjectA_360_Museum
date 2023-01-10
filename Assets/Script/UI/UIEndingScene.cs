@@ -9,6 +9,6 @@ public class UIEndingScene : MonoBehaviour
 
     private void Awake()
     {
-        //btnSkipCredit = gameObject.GetComponentInChildren<Button>();
+        btnSkipCredit = gameObject.GetComponentInChildren<Button>();
     }
 }
