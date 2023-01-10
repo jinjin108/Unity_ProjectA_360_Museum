@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class QuestObject : MonoBehaviour
+public class QuestObject
 {
     public string reliceName;
     public string showCaseName;
