@@ -51,6 +51,7 @@ public class QuizManager : MonoBehaviour
     public PostProcessVolume ppv;
     public AutoExposure ae;
     public ColorGrading cg;
+    MeshRenderer[] secondGameCube_1;
 
     private void Update()
     {
@@ -117,12 +118,12 @@ public class QuizManager : MonoBehaviour
         fadeIn = fadeinimg.GetComponent<Image>();
 
         StartCoroutine("SkyFadeIn");
+
         Object obj = Resources.Load($"Object/" + "SecondGame");
         secondGame = (GameObject)Instantiate(obj);
+        secondGameCube_1 = secondGame.GetComponentsInChildren<MeshRenderer>();
+
         StartCoroutine("FadeSystem");
-
-
-
         Invoke("SkyBoxChange", 5f);
         MeshRenderer secondGameCube = secondGame.GetComponentInChildren<MeshRenderer>();
         Material mat = secondGameCube.material;
@@ -135,10 +136,23 @@ public class QuizManager : MonoBehaviour
                 secondGame.transform.position = new Vector3(-13.48f, 2.16f, -6.23f);
                 break;
             case 1:
+                secondGameCube_1[0].transform.localScale = new Vector3(0.05f, 7.6f, 9f);
+                secondGameCube_1[0].transform.position = new Vector3(-10.8f, -1.3f, 0.3f);
+                secondGameCube_1[1].transform.localScale = new Vector3(0.02f, 3.3f, 4f);
+                secondGameCube_1[1].transform.position = new Vector3(-10.4f, 0.6f, 7.3f);
+                secondGameCube_1[1].transform.rotation = new Quaternion(0, -173.3f,0,0);
+
                 Texture tex_2 = Resources.Load("Images/CulturalHeritage_3", typeof(Texture)) as Texture;
                 mat.SetTexture("_MainTex", tex_2);
                 break;
             case 2:
+                secondGameCube_1[0].transform.localScale = new Vector3(0.05f, 13.42f, 21.4f);
+                secondGameCube_1[0].transform.position = new Vector3(-11f, 5f, -0.7f);
+                secondGameCube_1[0].transform.rotation = new Quaternion(0, 0, -5.5f, 0);
+                secondGameCube_1[1].transform.localScale = new Vector3(0.02f, 4.9f, 5.5f);
+                secondGameCube_1[1].transform.position = new Vector3(-11f, 8.5f, 12.8f);
+                secondGameCube_1[1].transform.rotation = new Quaternion(0, 0, -3.5f, 0);
+
                 Texture tex_3 = Resources.Load("Images/CulturalHeritage_2", typeof(Texture)) as Texture;
                 mat.SetTexture("_MainTex", tex_3);
                 break;
