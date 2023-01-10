@@ -26,7 +26,6 @@ public class LanguageSelection : MonoBehaviour
     [SerializeField] private Material skybox;
     [SerializeField] private Light point;
 
-
     Bloom bl;
     private void Start()
     {

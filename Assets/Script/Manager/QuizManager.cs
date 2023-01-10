@@ -4,6 +4,8 @@ using UnityEngine;
 using UnityEngine.Video;
 using UnityEngine.UI;
 using UnityEngine.XR.Interaction.Toolkit;
+using UnityEngine.Rendering.PostProcessing;
+
 
 public class QuizManager : MonoBehaviour
 {
@@ -46,14 +48,29 @@ public class QuizManager : MonoBehaviour
 
     public test ReadingGlasses = new test();
     public Image fadeIn;
+    public PostProcessVolume ppv;
+    public AutoExposure ae;
+    public ColorGrading cg;
 
-    private void Update() {
-        
+    private void Start()
+    {
+        GameObject postv = GameObject.FindGameObjectWithTag("Post");
+        ppv = postv.GetComponent<PostProcessVolume>();
+        ppv.profile.TryGetSettings(out ae);
+        ppv.profile.TryGetSettings(out cg);
+        GameObject fadeinimg = GameObject.FindGameObjectWithTag("Img");
+        fadeIn = fadeinimg.GetComponent<Image>();
+
+    }
+    private void Update()
+    {
+
         CheckSecondAnswerPosition();
 
         CheckInputFromeXR();
 
         Move();
+
     }
 
 
@@ -101,31 +118,32 @@ public class QuizManager : MonoBehaviour
 
     public GameObject CreateSecondGame()
     {
-        GameObject fadeinimg = GameObject.FindGameObjectWithTag("Img");
-        fadeIn = fadeinimg.GetComponent<Image>();
-
+        StartCoroutine("SkyFadeIn");
         Object obj = Resources.Load($"Object/" + "SecondGame");
         secondGame = (GameObject)Instantiate(obj);
-        StartCoroutine("FadeIn");
-        Invoke("SkyBoxChange", 5f);
+        StartCoroutine("FadeSystem");
+
+
+
+        Invoke("SkyBoxChange", 3f);
         MeshRenderer secondGameCube = secondGame.GetComponentInChildren<MeshRenderer>();
         Material mat = secondGameCube.material;
 
         switch (curQuizNumber)
         {
             case 0:
-            Texture tex_1 = Resources.Load("Images/CulturalHeritage_1",typeof(Texture)) as Texture;
-            mat.SetTexture("_MainTex",tex_1);
-            secondGame.transform.position = new Vector3(-13.48f, 2.16f, -6.23f);
+                Texture tex_1 = Resources.Load("Images/CulturalHeritage_1", typeof(Texture)) as Texture;
+                mat.SetTexture("_MainTex", tex_1);
+                secondGame.transform.position = new Vector3(-13.48f, 2.16f, -6.23f);
                 break;
             case 1:
-            Texture tex_2 = Resources.Load("Images/CulturalHeritage_3",typeof(Texture)) as Texture;
-            mat.SetTexture("_MainTex",tex_2);
-            break;
+                Texture tex_2 = Resources.Load("Images/CulturalHeritage_3", typeof(Texture)) as Texture;
+                mat.SetTexture("_MainTex", tex_2);
+                break;
             case 2:
-            Texture tex_3 = Resources.Load("Images/CulturalHeritage_2",typeof(Texture)) as Texture;
-            mat.SetTexture("_MainTex",tex_3);
-            break;
+                Texture tex_3 = Resources.Load("Images/CulturalHeritage_2", typeof(Texture)) as Texture;
+                mat.SetTexture("_MainTex", tex_3);
+                break;
         }
 
         secondGameCamera = secondGame.GetComponentInChildren<Camera>().transform;
@@ -133,7 +151,7 @@ public class QuizManager : MonoBehaviour
 
         return secondGame;
     }
-    
+
     public GameObject CreateTarget(string target)
     {
         Object targetObj = Resources.Load("Object/" + target);
@@ -151,16 +169,18 @@ public class QuizManager : MonoBehaviour
 
         Vector3 curPos = secondGameObject.position;
 
-        float width = secondGameObject.position.x;
+        //float randX = curPos.x;
 
         float randY = Random.Range(-(secondGameObject.lossyScale.y / 2), (secondGameObject.lossyScale.y / 2));
         float randZ = Random.Range(-(secondGameObject.lossyScale.z / 2), (secondGameObject.lossyScale.z / 2));
 
+        curPos.y += randY;
+        curPos.z += randZ;
 
-        Vector3 ran = new Vector3(width, randY, randZ);
+        //Vector3 ran = new Vector3(randX, randY, randZ);
 
         Object relicsObj = Resources.Load($"Object/" + QuestManager.GetInstance().questObjectList[curQuizNumber].reliceName);
-        relics = (GameObject)Instantiate(relicsObj, ran, Quaternion.identity);
+        relics = (GameObject)Instantiate(relicsObj, curPos, Quaternion.identity);
     }
 
     public IEnumerator NextQuiz()
@@ -175,7 +195,7 @@ public class QuizManager : MonoBehaviour
         isSecondGame = true;
 
 
-        
+
 
         // float i = 0f;
 
@@ -249,21 +269,20 @@ public class QuizManager : MonoBehaviour
         {
             return;
         }
-            checkPosition = secondGameCamera.transform.position;
-            checkPosition.x = relics.transform.position.x;
+        checkPosition = secondGameCamera.transform.position;
+        checkPosition.x = relics.transform.position.x;
 
-        if (Vector3.Distance(checkPosition, relics.transform.position) < 0.1f)
-            {
+        if (Vector3.Distance(checkPosition, relics.transform.position) < 0.2f)
+        {
             QuestManager.GetInstance().questObjectList[curQuizNumber].isDone = true;
             QuestManager.GetInstance().sumacsaesList[curQuizNumber].isClear = true;
             relics = null;
-
-            ScenesManager.GetInstance().ChangeScene(Scene.Main);
+            StartCoroutine("FostFadeSystem");
         }
     }
     IEnumerator FadeIn()
     {
-        yield return new WaitForSeconds(3f);
+        yield return new WaitForSeconds(2f);
 
         while (fadeIn.color.a >= 0)
         {
@@ -273,12 +292,91 @@ public class QuizManager : MonoBehaviour
             yield return null;
         }
 
-       // quizVideo.clip = Resources.Load<VideoClip>($"Videos/Relics_4");
     }
+
+    IEnumerator Fadeout()
+    {
+        yield return new WaitForSeconds(1f);
+
+        while (fadeIn.color.a >= 0)
+        {
+
+            float alpha = fadeIn.color.a - 0.0035f;
+            fadeIn.color = new Color(fadeIn.color.r, fadeIn.color.g, fadeIn.color.b, alpha);
+            yield return null;
+        }
+
+    }
+    IEnumerator FadeSystem()
+    {
+        StartCoroutine("FadeIn");
+        yield return new WaitForSeconds(3f);
+        StopCoroutine("FadeIn");
+        StartCoroutine("Fadeout");
+        StartCoroutine("SkyFadeOut");
+        yield return new WaitForSeconds(3f);
+        StopCoroutine("Fadeout");
+    }
+
     public void SkyBoxChange()
     {
         quizVideo.clip = Resources.Load<VideoClip>($"Videos/Relics_4");
     }
+
+    IEnumerator FostFadeSystem()
+    {
+        StartCoroutine("FostFadeIn");
+        yield return new WaitForSeconds(1.5f);
+        StopCoroutine("FostFadeIn");
+        StartCoroutine("FostFadeout");
+        yield return new WaitForSeconds(1.5f);
+        StopCoroutine("FostFadeout");
+
+        ScenesManager.GetInstance().ChangeScene(Scene.Main);
+
+    }
+
+    IEnumerator FostFadeIn()
+    {
+        while (ae.minLuminance.value > -9f)
+        {
+            ae.minLuminance.value -= 0.2f;
+
+            yield return new WaitForSeconds(0.09f);
+        }
+
+    }
+    IEnumerator FostFadeout()
+    {
+        while (ae.minLuminance.value < 0f)
+        {
+            ae.minLuminance.value += 0.15f;
+
+            yield return new WaitForSeconds(0.05f);
+
+        }
+    }
+    IEnumerator SkyFadeIn()
+    {
+
+        while (cg.saturation.value > -100f)
+        {
+            cg.saturation.value -= 1f;
+
+            yield return new WaitForSeconds(0.025f);
+        }
+    }
+    IEnumerator SkyFadeOut()
+    {
+
+        while (cg.saturation.value < 100f)
+        {
+            cg.saturation.value += 1f;
+
+            yield return new WaitForSeconds(0.0001f);
+        }
+    }
+
 }
 
 
