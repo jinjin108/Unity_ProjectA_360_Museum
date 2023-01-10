@@ -81,6 +81,11 @@ public class ObjectManager : MonoBehaviour
         SymbolList[questNumber].transform.position += positon;
     }
 
+    public void MoveSymboll(int questNumber ,Vector3 positon)
+    {
+        SymbolList[questNumber].transform.position += positon;
+    }
+
     public void MoveSumacsae(int questNumber ,Vector3 positon)
     {
         if (SumacsaeList.ContainsKey(QuestManager.GetInstance().sumacsaesList[questNumber].name) == false)
