@@ -54,12 +54,6 @@ public class QuizManager : MonoBehaviour
 
     private void Start()
     {
-        GameObject postv = GameObject.FindGameObjectWithTag("Post");
-        ppv = postv.GetComponent<PostProcessVolume>();
-        ppv.profile.TryGetSettings(out ae);
-        ppv.profile.TryGetSettings(out cg);
-        GameObject fadeinimg = GameObject.FindGameObjectWithTag("Img");
-        fadeIn = fadeinimg.GetComponent<Image>();
 
     }
     private void Update()
@@ -118,6 +112,14 @@ public class QuizManager : MonoBehaviour
 
     public GameObject CreateSecondGame()
     {
+        GameObject postv = GameObject.FindGameObjectWithTag("Post");
+        ppv = postv.GetComponent<PostProcessVolume>();
+        ppv.profile.TryGetSettings(out ae);
+        ppv.profile.TryGetSettings(out cg);
+
+        GameObject fadeinimg = GameObject.FindGameObjectWithTag("Img");
+        fadeIn = fadeinimg.GetComponent<Image>();
+
         StartCoroutine("SkyFadeIn");
         Object obj = Resources.Load($"Object/" + "SecondGame");
         secondGame = (GameObject)Instantiate(obj);
