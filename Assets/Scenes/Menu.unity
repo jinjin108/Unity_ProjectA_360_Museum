@@ -476,7 +476,7 @@ Transform:
   m_GameObject: {fileID: 178943367}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: -15.6, z: 541.5}
-  m_LocalScale: {x: 109.593315, y: 81.323814, z: 5.5153666}
+  m_LocalScale: {x: 109.593315, y: 132.86685, z: 5.5153666}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1546208977}
@@ -1166,8 +1166,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 719767627}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -34.2, y: -15.6, z: 508.7}
-  m_LocalScale: {x: 38.805084, y: 81.323814, z: 5.5153666}
+  m_LocalPosition: {x: -44.9, y: -15.6, z: 508.7}
+  m_LocalScale: {x: 38.805084, y: 132.86685, z: 5.5153666}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1546208977}
@@ -1203,7 +1203,7 @@ Light:
   m_Shape: 0
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_Intensity: 29.36
-  m_Range: 50
+  m_Range: 87.98
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
   m_CookieSize: 10
@@ -3251,8 +3251,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1570014429}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 34.3, y: -15.6, z: 508.7}
-  m_LocalScale: {x: 38.805084, y: 81.323814, z: 5.5153666}
+  m_LocalPosition: {x: 43.8, y: -15.6, z: 508.7}
+  m_LocalScale: {x: 38.805084, y: 132.86685, z: 5.5153666}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1546208977}
@@ -4351,6 +4351,7 @@ MonoBehaviour:
   NextBnt: {fileID: 1714196135}
   BackBnt: {fileID: 1372608555}
   skybox: {fileID: 2100000, guid: 9575c382147fdb747b30772934cd07a2, type: 2}
+  point: {fileID: 739769391}
 --- !u!4 &4782757596209551390
 Transform:
   m_ObjectHideFlags: 0
