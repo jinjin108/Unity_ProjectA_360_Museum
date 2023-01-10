@@ -109,7 +109,8 @@ public class QuizManager : MonoBehaviour
             case 0:
             Texture tex_1 = Resources.Load("Images/CulturalHeritage_1",typeof(Texture)) as Texture;
             mat.SetTexture("_MainTex",tex_1);
-            break;
+            secondGame.transform.position = new Vector3(-13.48f, 2.16f, -6.23f);
+                break;
             case 1:
             Texture tex_2 = Resources.Load("Images/CulturalHeritage_3",typeof(Texture)) as Texture;
             mat.SetTexture("_MainTex",tex_2);
