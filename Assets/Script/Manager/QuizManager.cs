@@ -45,6 +45,7 @@ public class QuizManager : MonoBehaviour
     public Transform secondGameObject;
 
     public test ReadingGlasses = new test();
+    public Image fadeIn;
 
     private void Update() {
         
@@ -100,8 +101,13 @@ public class QuizManager : MonoBehaviour
 
     public GameObject CreateSecondGame()
     {
+        GameObject fadeinimg = GameObject.FindGameObjectWithTag("Img");
+        fadeIn = fadeinimg.GetComponent<Image>();
+
         Object obj = Resources.Load($"Object/" + "SecondGame");
         secondGame = (GameObject)Instantiate(obj);
+        StartCoroutine("FadeIn");
+        Invoke("SkyBoxChange", 5f);
         MeshRenderer secondGameCube = secondGame.GetComponentInChildren<MeshRenderer>();
         Material mat = secondGameCube.material;
 
@@ -253,9 +259,26 @@ public class QuizManager : MonoBehaviour
             relics = null;
 
             ScenesManager.GetInstance().ChangeScene(Scene.Main);
-            }
+        }
     }
+    IEnumerator FadeIn()
+    {
+        yield return new WaitForSeconds(3f);
 
+        while (fadeIn.color.a >= 0)
+        {
+
+            float alpha = fadeIn.color.a + 0.0035f;
+            fadeIn.color = new Color(fadeIn.color.r, fadeIn.color.g, fadeIn.color.b, alpha);
+            yield return null;
+        }
+
+       // quizVideo.clip = Resources.Load<VideoClip>($"Videos/Relics_4");
+    }
+    public void SkyBoxChange()
+    {
+        quizVideo.clip = Resources.Load<VideoClip>($"Videos/Relics_4");
+    }
 }
 
 
