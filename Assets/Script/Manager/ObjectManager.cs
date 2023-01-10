@@ -102,7 +102,6 @@ public class ObjectManager : MonoBehaviour
             MeshRenderer relicsPoint = showCaseList[objectName].GetComponentInChildren<MeshRenderer>();
 
             go.transform.position = relicsPoint.transform.position;
-            //go.transform.position = new Vector3(0,1f,0);
 
             if (QuestManager.GetInstance().questObjectList[num].isDone == false)
             {
