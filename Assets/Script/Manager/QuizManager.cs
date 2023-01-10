@@ -25,8 +25,6 @@ public class QuizManager : MonoBehaviour
     }
     #endregion
 
-    string[] quizVideoList = { "Relics_1", "Relics_2", "Relics_3" };
-
     public int curQuizNumber;
     string curReliceName;
 
@@ -62,7 +60,7 @@ public class QuizManager : MonoBehaviour
         GameObject quizVideogo = GameObject.FindGameObjectWithTag("VideoPlayer");
         quizVideo = quizVideogo.GetComponent<VideoPlayer>();
 
-        quizVideo.clip = Resources.Load<VideoClip>($"Videos/" + quizVideoList[curQuizNumber]);
+        quizVideo.clip = Resources.Load<VideoClip>($"Videos/" + QuestManager.GetInstance().questObjectList[curQuizNumber].reliceName);
 
         switch (curQuizNumber)
         {
@@ -93,7 +91,7 @@ public class QuizManager : MonoBehaviour
 
     public GameObject CreateSprite()
     {
-        spriteobj = Resources.Load($"Images/" + quizVideoList[curQuizNumber]);
+        spriteobj = Resources.Load($"Images/" + QuestManager.GetInstance().questObjectList[curQuizNumber].reliceName);
         sprite = (GameObject)Instantiate(spriteobj);
 
         return sprite;
@@ -147,7 +145,7 @@ public class QuizManager : MonoBehaviour
 
         Vector3 ran = new Vector3(x, y, z);
 
-        Object relicsObj = Resources.Load($"Object/" + quizVideoList[curQuizNumber]);
+        Object relicsObj = Resources.Load($"Object/" + QuestManager.GetInstance().questObjectList[curQuizNumber].reliceName);
         relics = (GameObject)Instantiate(relicsObj, ran, Quaternion.identity);
     }
 
@@ -242,8 +240,8 @@ public class QuizManager : MonoBehaviour
 
         if (Vector3.Distance(checkPosition, relics.transform.position) < 0.5f)
             {
-            QuestManager.questObjectList[curQuizNumber].isDone = true;
-            QuestManager.sumacsaesList[curQuizNumber].isClear = true;
+            QuestManager.GetInstance().questObjectList[curQuizNumber].isDone = true;
+            QuestManager.GetInstance().sumacsaesList[curQuizNumber].isClear = true;
             relics = null;
 
             ScenesManager.GetInstance().ChangeScene(Scene.Main);

@@ -29,7 +29,7 @@ public class ObjectManager : MonoBehaviour
 
     public void CreateQuest()
     {
-        QuestObject[] questObjectList = QuestManager.questObjectList;
+        QuestObject[] questObjectList = QuestManager.GetInstance().questObjectList;
 
         for (int i = 0; i < questObjectList.Length; i++)
         {
@@ -69,7 +69,7 @@ public class ObjectManager : MonoBehaviour
 
     public void MoveShowcase(int questNumber ,Vector3 positon)
     {
-        QuestObject[] questObjectList = QuestManager.questObjectList;
+        QuestObject[] questObjectList = QuestManager.GetInstance().questObjectList;
         string showCaseName = questObjectList[questNumber].showCaseName;
         string reliceName = questObjectList[questNumber].reliceName;
 
@@ -80,11 +80,11 @@ public class ObjectManager : MonoBehaviour
 
     public void MoveSumacsae(int questNumber ,Vector3 positon)
     {
-        if (SumacsaeList.ContainsKey(QuestManager.sumacsaesList[questNumber].name) == false)
+        if (SumacsaeList.ContainsKey(QuestManager.GetInstance().sumacsaesList[questNumber].name) == false)
         {
             return;
         }
-        SumacsaeList[QuestManager.sumacsaesList[questNumber].name].transform.position = positon;
+        SumacsaeList[QuestManager.GetInstance().sumacsaesList[questNumber].name].transform.position = positon;
 
     }
 
@@ -101,7 +101,7 @@ public class ObjectManager : MonoBehaviour
             go.transform.position = relicsPoint.transform.position;
             //go.transform.position = new Vector3(0,1f,0);
 
-            if (QuestManager.questObjectList[num].isDone == false)
+            if (QuestManager.GetInstance().questObjectList[num].isDone == false)
             {
                 go.SetActive(false);
             }
@@ -129,14 +129,14 @@ public class ObjectManager : MonoBehaviour
 
     public void CreateSumacsae()
     {
-        for (int i = 0; i < QuestManager.sumacsaesList.Length; i++)
+        for (int i = 0; i < QuestManager.GetInstance().sumacsaesList.Length; i++)
         {
-            if (QuestManager.sumacsaesList[i].isClear != false)
+            if (QuestManager.GetInstance().sumacsaesList[i].isClear != false)
             {
-            Object Obj = Resources.Load("Object/" + QuestManager.sumacsaesList[i].name);
+            Object Obj = Resources.Load("Object/" + QuestManager.GetInstance().sumacsaesList[i].name);
             GameObject go = (GameObject)Instantiate(Obj);
 
-            SumacsaeList.Add(QuestManager.sumacsaesList[i].name, go);
+            SumacsaeList.Add(QuestManager.GetInstance().sumacsaesList[i].name, go);
             }
         }
 
