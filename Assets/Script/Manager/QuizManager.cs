@@ -42,6 +42,7 @@ public class QuizManager : MonoBehaviour
     GameObject secondGame;
     public GameObject relics = null;
     public string targetName;
+    public Transform secondGameObject;
 
     public test ReadingGlasses = new test();
 
@@ -122,7 +123,6 @@ public class QuizManager : MonoBehaviour
         }
 
         secondGameCamera = secondGame.GetComponentInChildren<Camera>().transform;
-
         CreateSecondGameObject();
 
         return secondGame;
@@ -140,11 +140,18 @@ public class QuizManager : MonoBehaviour
 
     public void CreateSecondGameObject()
     {
-        float x = -10.5f;
-        float y = Random.Range(-2f, 6f);
-        float z = Random.Range(0f, 9f);
+        MeshRenderer secondGameObjectms = secondGame.GetComponentInChildren<MeshRenderer>();
+        secondGameObject = secondGameObjectms.transform;
 
-        Vector3 ran = new Vector3(x, y, z);
+        Vector3 curPos = secondGameObject.position;
+
+        float width = secondGameObject.position.x;
+
+        float randY = Random.Range(-(secondGameObject.lossyScale.y / 2), (secondGameObject.lossyScale.y / 2));
+        float randZ = Random.Range(-(secondGameObject.lossyScale.z / 2), (secondGameObject.lossyScale.z / 2));
+
+
+        Vector3 ran = new Vector3(width, randY, randZ);
 
         Object relicsObj = Resources.Load($"Object/" + QuestManager.GetInstance().questObjectList[curQuizNumber].reliceName);
         relics = (GameObject)Instantiate(relicsObj, ran, Quaternion.identity);
@@ -239,7 +246,7 @@ public class QuizManager : MonoBehaviour
             checkPosition = secondGameCamera.transform.position;
             checkPosition.x = relics.transform.position.x;
 
-        if (Vector3.Distance(checkPosition, relics.transform.position) < 0.5f)
+        if (Vector3.Distance(checkPosition, relics.transform.position) < 0.1f)
             {
             QuestManager.GetInstance().questObjectList[curQuizNumber].isDone = true;
             QuestManager.GetInstance().sumacsaesList[curQuizNumber].isClear = true;

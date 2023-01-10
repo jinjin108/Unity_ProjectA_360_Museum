@@ -5,7 +5,10 @@ using UnityEngine;
 public class SecondGame : MonoBehaviour
 {
     public Camera scondGameCamera;
-    private void Start() {
+    public MeshRenderer go;
+    private void Start()
+    {
         scondGameCamera = GetComponentInChildren<Camera>();
+        go = GetComponentInChildren<MeshRenderer>();
     }
 }
