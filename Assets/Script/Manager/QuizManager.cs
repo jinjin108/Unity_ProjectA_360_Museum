@@ -125,7 +125,7 @@ public class QuizManager : MonoBehaviour
 
 
 
-        Invoke("SkyBoxChange", 3f);
+        Invoke("SkyBoxChange", 5f);
         MeshRenderer secondGameCube = secondGame.GetComponentInChildren<MeshRenderer>();
         Material mat = secondGameCube.material;
 
@@ -282,7 +282,7 @@ public class QuizManager : MonoBehaviour
     }
     IEnumerator FadeIn()
     {
-        yield return new WaitForSeconds(2f);
+        yield return new WaitForSeconds(2.5f);
 
         while (fadeIn.color.a >= 0)
         {
@@ -296,7 +296,6 @@ public class QuizManager : MonoBehaviour
 
     IEnumerator Fadeout()
     {
-        yield return new WaitForSeconds(1f);
 
         while (fadeIn.color.a >= 0)
         {
@@ -310,11 +309,11 @@ public class QuizManager : MonoBehaviour
     IEnumerator FadeSystem()
     {
         StartCoroutine("FadeIn");
-        yield return new WaitForSeconds(3f);
+        yield return new WaitForSeconds(4.5f);
         StopCoroutine("FadeIn");
         StartCoroutine("Fadeout");
         StartCoroutine("SkyFadeOut");
-        yield return new WaitForSeconds(3f);
+        yield return new WaitForSeconds(2f);
         StopCoroutine("Fadeout");
     }
 
