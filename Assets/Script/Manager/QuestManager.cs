@@ -22,13 +22,13 @@ public class QuestManager : MonoBehaviour
     }
     #endregion
 
-    public static QuestObject[] questObjectList = {
+    public QuestObject[] questObjectList = {
         new QuestObject("ShowCase1", "Relics_1"),
         new QuestObject("ShowCase2", "Relics_2"),
         new QuestObject("ShowCase3", "Relics_3")
     };
 
-    public static Sumacsae[] sumacsaesList = {
+    public Sumacsae[] sumacsaesList = {
         new Sumacsae("Sumacsae_1"),
         new Sumacsae("Sumacsae_2"),
         new Sumacsae("Sumacsae_3"),
