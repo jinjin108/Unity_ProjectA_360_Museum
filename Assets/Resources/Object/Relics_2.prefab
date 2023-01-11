@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 3853622853432280525}
   - component: {fileID: 1488247994352133114}
   - component: {fileID: 6643873701241805458}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: cil
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -94,7 +94,7 @@ GameObject:
   - component: {fileID: 254461614485491102}
   - component: {fileID: 3758215304034796091}
   - component: {fileID: 1424029881166903025}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: jickji
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -179,7 +179,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4639515058720903535}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: jickjiOpen
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -247,7 +247,7 @@ GameObject:
   - component: {fileID: 6579346823882620500}
   - component: {fileID: 2805994804155475797}
   - component: {fileID: 1208652893424307286}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Book
   m_TagString: Untagged
   m_Icon: {fileID: 0}
