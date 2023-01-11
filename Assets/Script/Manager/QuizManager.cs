@@ -413,12 +413,12 @@ public class QuizManager : MonoBehaviour
         relicsInfo = InfoImg.GetComponent<Image>();
         GameObject Infotxt = GameObject.FindGameObjectWithTag("RelicsInfoText");
         relicsInfotxt = Infotxt.GetComponent<TMP_Text>();
-        LocalizationTable($"Relics_Info_{curQuizNumber}_{a}");
+        LocalizationTable($"Relics_Info_{curQuizNumber}_{infiPageNumber}");
         relicsInfotxt.text = info;
     }
     public void InfoNext()
     {
-
+        infiPageNumber += 1;
     }
 }
 
