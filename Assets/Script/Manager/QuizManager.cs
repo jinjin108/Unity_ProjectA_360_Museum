@@ -340,7 +340,7 @@ public class QuizManager : MonoBehaviour
 
     public void SkyBoxChange()
     {
-        quizVideo.clip = Resources.Load<VideoClip>($"Videos/Relics_4");
+        quizVideo.clip = Resources.Load<VideoClip>($"Videos/BackGround");
     }
 
     IEnumerator FostFadeSystem()
