@@ -61,6 +61,7 @@ public class QuizManager : MonoBehaviour
     MeshRenderer[] secondGameCube_1;
     public Image relicsInfo;
     public TMP_Text relicsInfotxt;
+    public Button nextBut;
 
     private void Update()
     {
@@ -347,11 +348,11 @@ public class QuizManager : MonoBehaviour
         StartCoroutine("FostFadeIn");
         yield return new WaitForSeconds(1.5f);
         StopCoroutine("FostFadeIn");
+        RelicsInfo();
+        secondGame.gameObject.SetActive(false);
         StartCoroutine("FostFadeout");
         yield return new WaitForSeconds(1.5f);
         StopCoroutine("FostFadeout");
-        RelicsInfo();
-        //ScenesManager.GetInstance().ChangeScene(Scene.Main);
     }
 
     IEnumerator FostFadeIn()
@@ -413,12 +414,26 @@ public class QuizManager : MonoBehaviour
         relicsInfo = InfoImg.GetComponent<Image>();
         GameObject Infotxt = GameObject.FindGameObjectWithTag("RelicsInfoText");
         relicsInfotxt = Infotxt.GetComponent<TMP_Text>();
+        GameObject nexBut= GameObject.FindGameObjectWithTag("NextBut");
+        nextBut = nexBut.GetComponent<Button>();
+        nextBut.onClick.AddListener(InfoNext);
         LocalizationTable($"Relics_Info_{curQuizNumber}_{infiPageNumber}");
         relicsInfotxt.text = info;
     }
     public void InfoNext()
     {
         infiPageNumber += 1;
+        LocalizationTable($"Relics_Info_{curQuizNumber}_{infiPageNumber}");
+        relicsInfotxt.text = info;
+        if (infiPageNumber == 4)
+        {
+            StartCoroutine("FostFadeIn");
+            Invoke("gomain",2f);
+        }
+    }
+    void gomain()
+    {
+        ScenesManager.GetInstance().ChangeScene(Scene.Main);
     }
 }
 

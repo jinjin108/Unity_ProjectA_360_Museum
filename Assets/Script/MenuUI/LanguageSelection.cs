@@ -44,8 +44,7 @@ public class LanguageSelection : MonoBehaviour
     }
     public void UserLocalizationko()
     {
-        LocalizationSettings.SelectedLocale =
-            LocalizationSettings.AvailableLocales.Locales[1];
+        CheckLanguages.GetInstance().selectionLanguages(1);
         txtinfoText.gameObject.SetActive(true);
         NextBnt.gameObject.SetActive(true);
         BackBnt.gameObject.SetActive(true);
@@ -61,8 +60,7 @@ public class LanguageSelection : MonoBehaviour
 
     public void UserLocalizationen()
     {
-        LocalizationSettings.SelectedLocale =
-            LocalizationSettings.AvailableLocales.Locales[0];
+        CheckLanguages.GetInstance().selectionLanguages(0);
         txtinfoText.gameObject.SetActive(true);
         NextBnt.gameObject.SetActive(true);
         BackBnt.gameObject.SetActive(true);
