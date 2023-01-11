@@ -408,8 +408,6 @@ public class QuizManager : MonoBehaviour
     {
         Object InfoObj = Resources.Load("Object/ExplanationOfRelics");
         GameObject tar = (GameObject)Instantiate(InfoObj);
-        tar.transform.position = sprite.transform.position;
-        tar.transform.localEulerAngles = sprite.transform.localEulerAngles;
         GameObject InfoImg = GameObject.FindGameObjectWithTag("RelicsInfo");
         relicsInfo = InfoImg.GetComponent<Image>();
         GameObject Infotxt = GameObject.FindGameObjectWithTag("RelicsInfoText");
@@ -417,7 +415,23 @@ public class QuizManager : MonoBehaviour
         GameObject nexBut= GameObject.FindGameObjectWithTag("NextBut");
         nextBut = nexBut.GetComponent<Button>();
         nextBut.onClick.AddListener(InfoNext);
+        switch (curQuizNumber)
+        {
+            case 0:
+                tar.transform.position = sprite.transform.position;
+                tar.transform.localEulerAngles = sprite.transform.localEulerAngles;
+                break;
+            case 1:
+                tar.transform.position = sprite.transform.position;
+                tar.transform.localEulerAngles = new Vector3(2.8f,-87f,0.2f);
+                break;
+            case 2:
+                tar.transform.position = new Vector3((sprite.transform.position.x - 5f), sprite.transform.position.y, sprite.transform.position.z);
+                tar.transform.localEulerAngles = sprite.transform.localEulerAngles;
+                break;
+        }
         LocalizationTable($"Relics_Info_{curQuizNumber}_{infiPageNumber}");
+        relicsInfo.sprite = Resources.Load<Sprite>($"Images/UIRelics_{curQuizNumber}_{infiPageNumber}");
         relicsInfotxt.text = info;
     }
     public void InfoNext()
@@ -425,8 +439,10 @@ public class QuizManager : MonoBehaviour
         infiPageNumber += 1;
         LocalizationTable($"Relics_Info_{curQuizNumber}_{infiPageNumber}");
         relicsInfotxt.text = info;
+        relicsInfo.sprite = Resources.Load<Sprite>($"Images/UIRelics_{curQuizNumber}_{infiPageNumber}");
         if (infiPageNumber == 4)
         {
+            nextBut.gameObject.SetActive(false);
             StartCoroutine("FostFadeIn");
             Invoke("gomain",2f);
         }
