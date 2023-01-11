@@ -5,6 +5,11 @@ using UnityEngine.Video;
 using UnityEngine.UI;
 using UnityEngine.XR.Interaction.Toolkit;
 using UnityEngine.Rendering.PostProcessing;
+using UnityEngine.Localization;
+using UnityEngine.Localization.Settings;
+using TMPro;
+using UnityEngine.ResourceManagement.AsyncOperations;
+
 
 
 public class QuizManager : MonoBehaviour
@@ -27,8 +32,10 @@ public class QuizManager : MonoBehaviour
     }
     #endregion
 
+    public int infiPageNumber;
     public int curQuizNumber;
     string curReliceName;
+    string info;
 
     Vector3 quizojpoint;
     Vector3 checkPosition;
@@ -49,9 +56,11 @@ public class QuizManager : MonoBehaviour
     public test ReadingGlasses = new test();
     public Image fadeIn;
     public PostProcessVolume ppv;
-    public AutoExposure ae;
-    public ColorGrading cg;
+    AutoExposure ae;
+    ColorGrading cg;
     MeshRenderer[] secondGameCube_1;
+    public Image relicsInfo;
+    public TMP_Text relicsInfotxt;
 
     private void Update()
     {
@@ -148,10 +157,8 @@ public class QuizManager : MonoBehaviour
             case 2:
                 secondGameCube_1[0].transform.localScale = new Vector3(0.05f, 13.42f, 21.4f);
                 secondGameCube_1[0].transform.position = new Vector3(-11f, 5f, -0.7f);
-                secondGameCube_1[0].transform.rotation = new Quaternion(0, 0, -5.5f, 0);
                 secondGameCube_1[1].transform.localScale = new Vector3(0.02f, 4.9f, 5.5f);
                 secondGameCube_1[1].transform.position = new Vector3(-11f, 8.5f, 12.8f);
-                secondGameCube_1[1].transform.rotation = new Quaternion(0, 0, -3.5f, 0);
 
                 Texture tex_3 = Resources.Load("Images/CulturalHeritage_2", typeof(Texture)) as Texture;
                 mat.SetTexture("_MainTex", tex_3);
@@ -185,13 +192,13 @@ public class QuizManager : MonoBehaviour
 
         float randY = Random.Range(-(secondGameObject.lossyScale.y / 2), (secondGameObject.lossyScale.y / 2));
         float randZ = Random.Range(-(secondGameObject.lossyScale.z / 2), (secondGameObject.lossyScale.z / 2));
-
+        curPos.x += 0.5f;
         curPos.y += randY;
         curPos.z += randZ;
 
         //Vector3 ran = new Vector3(randX, randY, randZ);
-
-        Object relicsObj = Resources.Load($"Object/" + QuestManager.GetInstance().questObjectList[curQuizNumber].reliceName);
+            
+        Object relicsObj = Resources.Load($"Object/Relics_1{curQuizNumber}");
         relics = (GameObject)Instantiate(relicsObj, curPos, Quaternion.identity);
     }
 
@@ -290,6 +297,7 @@ public class QuizManager : MonoBehaviour
             QuestManager.GetInstance().sumacsaesList[curQuizNumber].isClear = true;
             relics = null;
             StartCoroutine("FostFadeSystem");
+
         }
     }
     IEnumerator FadeIn()
@@ -342,9 +350,8 @@ public class QuizManager : MonoBehaviour
         StartCoroutine("FostFadeout");
         yield return new WaitForSeconds(1.5f);
         StopCoroutine("FostFadeout");
-
-        ScenesManager.GetInstance().ChangeScene(Scene.Main);
-
+        RelicsInfo();
+        //ScenesManager.GetInstance().ChangeScene(Scene.Main);
     }
 
     IEnumerator FostFadeIn()
@@ -388,6 +395,31 @@ public class QuizManager : MonoBehaviour
         }
     }
 
+    public void LocalizationTable(string key)
+    {
+        var stringOperation = LocalizationSettings.StringDatabase.GetLocalizedStringAsync("New Table", key);
+        if (stringOperation.IsDone && stringOperation.Status == AsyncOperationStatus.Succeeded)
+        {
+            info = stringOperation.Result;
+        }
+    }
+    void RelicsInfo()
+    {
+        Object InfoObj = Resources.Load("Object/ExplanationOfRelics");
+        GameObject tar = (GameObject)Instantiate(InfoObj);
+        tar.transform.position = sprite.transform.position;
+        tar.transform.localEulerAngles = sprite.transform.localEulerAngles;
+        GameObject InfoImg = GameObject.FindGameObjectWithTag("RelicsInfo");
+        relicsInfo = InfoImg.GetComponent<Image>();
+        GameObject Infotxt = GameObject.FindGameObjectWithTag("RelicsInfoText");
+        relicsInfotxt = Infotxt.GetComponent<TMP_Text>();
+        LocalizationTable($"Relics_Info_{curQuizNumber}_{a}");
+        relicsInfotxt.text = info;
+    }
+    public void InfoNext()
+    {
+
+    }
 }
 
 
