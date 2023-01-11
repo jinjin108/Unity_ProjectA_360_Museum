@@ -39,6 +39,66 @@ MonoBehaviour:
     m_Key: info3
     m_Metadata:
       m_Items: []
+  - m_Id: 3184662926757888
+    m_Key: Relics_Info_0_0
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3185649368338432
+    m_Key: Relics_Info_0_1
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3185652044304384
+    m_Key: Relics_Info_0_2
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3197543693062144
+    m_Key: Relics_Info_0_3
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3212938256748544
+    m_Key: Relics_Info_0_4
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3219032806952960
+    m_Key: Relics_Info_1_0
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3219034757304320
+    m_Key: Relics_Info_1_1
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3219050355920896
+    m_Key: Relics_Info_1_2
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3219052809588736
+    m_Key: Relics_Info_1_3
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3219182128369664
+    m_Key: Relics_Info_1_4
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3220128430460928
+    m_Key: Relics_Info_2_0
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3220130070433792
+    m_Key: Relics_Info_2_1
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3220131517468672
+    m_Key: Relics_Info_2_2
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3220132792537088
+    m_Key: Relics_Info_2_3
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3220134705139712
+    m_Key: Relics_Info_2_4
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:
