@@ -24,7 +24,7 @@ public class LanguageSelection : MonoBehaviour
     [SerializeField] private Button StartBnt;
     [SerializeField] private Button NextBnt;
     [SerializeField] private Button BackBnt;
-    [SerializeField] private Material skybox;
+    [SerializeField] private Material backGround;
     [SerializeField] private Light point;
 
     Bloom bl;
@@ -37,9 +37,7 @@ public class LanguageSelection : MonoBehaviour
         BackBnt.gameObject.SetActive(false);
         LocalizationBntFalse();
 
-        RenderSettings.skybox = skybox;
-
-
+        RenderSettings.skybox = backGround;
         ppv.profile.TryGetSettings(out bl);
 
     }
@@ -54,7 +52,6 @@ public class LanguageSelection : MonoBehaviour
         txtinfoText.text = str;
         test.SetActive(true);
 
-        RenderSettings.skybox = default;
         MenuAni.GetInstance().StartWalk();
     }
 
@@ -70,7 +67,6 @@ public class LanguageSelection : MonoBehaviour
 
         test.SetActive(true);
 
-        RenderSettings.skybox = default;
         MenuAni.GetInstance().StartWalk();
 
     }
@@ -174,26 +170,27 @@ public class LanguageSelection : MonoBehaviour
     {
         switch (infoscore)
         {
-            case 1:
+            case 4:
                 LocalizationTable("info1");
                 txtinfoText.text = str;
                 infoscore -= 1;
                 break;
-            case 2:
+            case 5:
                 LocalizationTable("info2");
                 txtinfoText.text = str;
                 infoscore -= 1;
                 break;
-            case 3:
-                LocalizationTable("info2");
+            case 6:
+                LocalizationTable("info3");
                 txtinfoText.text = str;
                 infoscore -= 1;
                 break;
-            case 4:
-                LocalizationTable("info2");
+            case 7:
+                LocalizationTable("info4");
                 txtinfoText.text = str;
                 infoscore -= 1;
                 break;
+
 
         }
 
