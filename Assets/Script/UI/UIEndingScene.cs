@@ -22,7 +22,7 @@ public class UIEndingScene : MonoBehaviour
 
     void RollCreditStart()
     {
-        if (camera.transform.position.z > 85f)
+        if (camera.transform.position.z > 80f)
         {
             transform.position += new Vector3(0, 0.01f, 0);
         }
