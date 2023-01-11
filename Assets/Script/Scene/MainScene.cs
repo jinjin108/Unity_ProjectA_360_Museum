@@ -20,6 +20,7 @@ public class MainScene : MonoBehaviour
         ObjectManager.GetInstance().MoveShowcase(0, new Vector3(12.5f, 3.5f, -3f));
         ObjectManager.GetInstance().MoveShowcase(2, new Vector3(-6f, 4f, 19f));
         ObjectManager.GetInstance().MoveSymboll(0, new Vector3(-3.5f,3.5f,0));
+        ObjectManager.GetInstance().MoveSymboll(2, new Vector3(0,0.5f,0));
         ObjectManager.GetInstance().CreateSumacsae();
         ObjectManager.GetInstance().MoveSumacsae(0, new Vector3(-5f, 5f, 0));
         ObjectManager.GetInstance().MoveSumacsae(1, new Vector3(0, 5f, 0));
