@@ -10,7 +10,8 @@ using UnityEngine.Rendering.PostProcessing;
 public class LanguageSelection : MonoBehaviour
 {
     string str;
-    int txtscore = 0;
+    int infoscore = 0;
+    int gametextstory = 0;
 
     [SerializeField] private PostProcessVolume ppv;
 
@@ -47,11 +48,10 @@ public class LanguageSelection : MonoBehaviour
         CheckLanguages.GetInstance().selectionLanguages(1);
         txtinfoText.gameObject.SetActive(true);
         NextBnt.gameObject.SetActive(true);
-        BackBnt.gameObject.SetActive(true);
 
         LocalizationBntFalse();
         LocalizationTable("GameInfo");
-        txtinfo.text = str;
+        txtinfoText.text = str;
         test.SetActive(true);
 
         RenderSettings.skybox = default;
@@ -61,13 +61,13 @@ public class LanguageSelection : MonoBehaviour
     public void UserLocalizationen()
     {
         CheckLanguages.GetInstance().selectionLanguages(0);
-        txtinfoText.gameObject.SetActive(true);
         NextBnt.gameObject.SetActive(true);
         BackBnt.gameObject.SetActive(true);
 
         LocalizationBntFalse();
         LocalizationTable("GameInfo");
-        txtinfo.text = str;
+        txtinfoText.text = str;
+
         test.SetActive(true);
 
         RenderSettings.skybox = default;
@@ -80,7 +80,13 @@ public class LanguageSelection : MonoBehaviour
         LocalizationKoBnt.gameObject.SetActive(true);
         LocalizationEnBnt.gameObject.SetActive(true);
         StartBnt.gameObject.SetActive(false);
-        txtinfo.gameObject.SetActive(true);
+        txtinfoText.gameObject.SetActive(true);
+        LocalizationTable("LanguageSelection");
+        txtinfoText.text = str;
+
+
+
+
     }
 
     public void LocalizationBntFalse()
@@ -98,38 +104,62 @@ public class LanguageSelection : MonoBehaviour
             str = stringOperation.Result;
         }
     }
-
     public void NextText()
     {
-        switch (txtscore)
+        switch (infoscore)
         {
             case 0:
-                LocalizationTable("info2");
+                LocalizationTable("gamestory0");
                 txtinfoText.text = str;
-                txtscore += 1;
+                infoscore += 1;
                 break;
             case 1:
-                LocalizationTable("info3");
+                LocalizationTable("gamestory1");
                 txtinfoText.text = str;
-                txtscore += 1;
+                infoscore += 1;
                 break;
             case 2:
-                LocalizationTable("info3");
+                LocalizationTable("gamestory2");
                 txtinfoText.text = str;
-                txtscore += 1;
+                infoscore += 1;
                 break;
             case 3:
-                LocalizationTable("info3");
+                txtinfo.gameObject.SetActive(true);
+                txtinfo.text = "게임 설명";
+                LocalizationTable("info0");
                 txtinfoText.text = str;
-                txtscore += 1;
+                infoscore += 1;
+                BackBnt.gameObject.SetActive(true);
                 break;
             case 4:
+                LocalizationTable("info1");
+                txtinfoText.text = str;
+                infoscore += 1;
+                break;
+            case 5:
+                LocalizationTable("info2");
+                txtinfoText.text = str;
+                infoscore += 1;
+                break;
+            case 6:
                 LocalizationTable("info3");
                 txtinfoText.text = str;
-                txtscore += 1;
+                infoscore += 1;
                 break;
-
-            case 5:
+            case 7:
+                LocalizationTable("info4");
+                txtinfoText.text = str;
+                infoscore += 1;
+                break;
+            case 8:
+                LocalizationTable("info5");
+                txtinfoText.text = str;
+                infoscore += 1;
+                break;
+            case 9:
+                txtinfo.gameObject.SetActive(false);
+                NextBnt.gameObject.SetActive(false);
+                BackBnt.gameObject.SetActive(false);
                 StartCoroutine("FostFadeIn");
                 StartCoroutine("PointFadeIn");
                 txtinfoText.text = "박물관으로..";
@@ -142,27 +172,27 @@ public class LanguageSelection : MonoBehaviour
     }
     public void BackText()
     {
-        switch (txtscore)
+        switch (infoscore)
         {
             case 1:
                 LocalizationTable("info1");
                 txtinfoText.text = str;
-                txtscore -= 1;
+                infoscore -= 1;
                 break;
             case 2:
                 LocalizationTable("info2");
                 txtinfoText.text = str;
-                txtscore -= 1;
+                infoscore -= 1;
                 break;
             case 3:
                 LocalizationTable("info2");
                 txtinfoText.text = str;
-                txtscore -= 1;
+                infoscore -= 1;
                 break;
             case 4:
                 LocalizationTable("info2");
                 txtinfoText.text = str;
-                txtscore -= 1;
+                infoscore -= 1;
                 break;
 
         }
