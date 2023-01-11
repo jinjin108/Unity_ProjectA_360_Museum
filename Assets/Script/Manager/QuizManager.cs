@@ -5,6 +5,11 @@ using UnityEngine.Video;
 using UnityEngine.UI;
 using UnityEngine.XR.Interaction.Toolkit;
 using UnityEngine.Rendering.PostProcessing;
+using UnityEngine.Localization;
+using UnityEngine.Localization.Settings;
+using TMPro;
+using UnityEngine.ResourceManagement.AsyncOperations;
+
 
 
 public class QuizManager : MonoBehaviour
@@ -27,8 +32,10 @@ public class QuizManager : MonoBehaviour
     }
     #endregion
 
+    public int infiPageNumber;
     public int curQuizNumber;
     string curReliceName;
+    string info;
 
     Vector3 quizojpoint;
     Vector3 checkPosition;
@@ -52,6 +59,8 @@ public class QuizManager : MonoBehaviour
     AutoExposure ae;
     ColorGrading cg;
     MeshRenderer[] secondGameCube_1;
+    public Image relicsInfo;
+    public TMP_Text relicsInfotxt;
 
     private void Update()
     {
@@ -341,9 +350,8 @@ public class QuizManager : MonoBehaviour
         StartCoroutine("FostFadeout");
         yield return new WaitForSeconds(1.5f);
         StopCoroutine("FostFadeout");
-
-        ScenesManager.GetInstance().ChangeScene(Scene.Main);
-
+        RelicsInfo();
+        //ScenesManager.GetInstance().ChangeScene(Scene.Main);
     }
 
     IEnumerator FostFadeIn()
@@ -387,6 +395,31 @@ public class QuizManager : MonoBehaviour
         }
     }
 
+    public void LocalizationTable(string key)
+    {
+        var stringOperation = LocalizationSettings.StringDatabase.GetLocalizedStringAsync("New Table", key);
+        if (stringOperation.IsDone && stringOperation.Status == AsyncOperationStatus.Succeeded)
+        {
+            info = stringOperation.Result;
+        }
+    }
+    void RelicsInfo()
+    {
+        Object InfoObj = Resources.Load("Object/ExplanationOfRelics");
+        GameObject tar = (GameObject)Instantiate(InfoObj);
+        tar.transform.position = sprite.transform.position;
+        tar.transform.localEulerAngles = sprite.transform.localEulerAngles;
+        GameObject InfoImg = GameObject.FindGameObjectWithTag("RelicsInfo");
+        relicsInfo = InfoImg.GetComponent<Image>();
+        GameObject Infotxt = GameObject.FindGameObjectWithTag("RelicsInfoText");
+        relicsInfotxt = Infotxt.GetComponent<TMP_Text>();
+        LocalizationTable($"Relics_Info_{curQuizNumber}_{a}");
+        relicsInfotxt.text = info;
+    }
+    public void InfoNext()
+    {
+
+    }
 }
 
 
