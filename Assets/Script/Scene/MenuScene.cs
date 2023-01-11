@@ -2,10 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class QuizScene : MonoBehaviour
+public class MenuScene : MonoBehaviour
 {
-    private void Start() {
+    void Start()
+    {
         AudioManager.GetInstance();
-        QuizManager.GetInstance().CurrentQuizStart();
     }
 }

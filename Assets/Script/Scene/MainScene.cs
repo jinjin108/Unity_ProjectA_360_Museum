@@ -11,6 +11,7 @@ public class MainScene : MonoBehaviour
 
     private void Start()
     {
+        AudioManager.GetInstance();
         QuizManager.GetInstance().infiPageNumber = 0;
         ppv.profile.TryGetSettings(out bl);
         bl.intensity.value = 100f;
