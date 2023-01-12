@@ -36,6 +36,7 @@ public class QuizManager : MonoBehaviour
     public int curQuizNumber;
     string curReliceName;
     string info;
+    Vector3 sppo;
 
     Vector3 quizojpoint;
     Vector3 checkPosition;
@@ -430,6 +431,7 @@ public class QuizManager : MonoBehaviour
         GameObject nexBut= GameObject.FindGameObjectWithTag("NextBut");
         nextBut = nexBut.GetComponent<Button>();
         nextBut.onClick.AddListener(InfoNext);
+        sppo = sprite.transform.position;
         switch (curQuizNumber)
         {
             case 0:
@@ -437,11 +439,11 @@ public class QuizManager : MonoBehaviour
                 tar.transform.localEulerAngles = sprite.transform.localEulerAngles;
                 break;
             case 1:
-                tar.transform.position = sprite.transform.position;
+                tar.transform.position = new Vector3(sppo.x - 4, sppo.y, sppo.z);
                 tar.transform.localEulerAngles = new Vector3(2.8f,-87f,0.2f);
                 break;
             case 2:
-                tar.transform.position = new Vector3((sprite.transform.position.x - 10f), sprite.transform.position.y, sprite.transform.position.z);
+                tar.transform.position = new Vector3((sppo.x - 10f), sppo.y, sppo.z);
                 tar.transform.localEulerAngles = sprite.transform.localEulerAngles;
                 break;
         }
