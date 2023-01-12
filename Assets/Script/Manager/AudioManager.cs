@@ -6,23 +6,21 @@ public class AudioManager : MonoBehaviour
 {
     #region instance
 
-    private static AudioManager instance = null;
+    public static AudioManager instance = null;
 
     #endregion
-
-    private void Awake()
-    {
-        instance = this;
-
-    }
 
     public List<AudioClip> bgList = new List<AudioClip>();
     public List<AudioClip> sfxList = new List<AudioClip>();
 
-    AudioSource audioSource;
+    public AudioSource bgAudioSource;
+    public AudioSource sfxAudioSource;
 
-    private void Start()
+    private void Awake()
     {
-        audioSource = GetComponent<AudioSource>();
+        instance = this;
+        AudioSource[] AudioSourceList = GetComponents<AudioSource>();
+        bgAudioSource = AudioSourceList[0];
+        sfxAudioSource = AudioSourceList[1];
     }
 }
