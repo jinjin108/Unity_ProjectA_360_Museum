@@ -190,9 +190,8 @@ public class LanguageSelection : MonoBehaviour
         switch (infoscore)
         {
             case 4:
-                LocalizationTable("info1");
+                LocalizationTable("info0");
                 txtinfoText.text = str;
-                infoscore -= 1;
                 break;
             case 5:
                 LocalizationTable("info2");
