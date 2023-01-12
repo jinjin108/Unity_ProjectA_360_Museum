@@ -159,7 +159,7 @@ public class ObjectManager : MonoBehaviour
                 GameObject go = (GameObject)Instantiate(Obj);
 
                 SumacsaeList.Add(QuestManager.GetInstance().sumacsaesList[i].name, go);
-                if (QuestManager.GetInstance().sumacsaesList[0].isClear && QuestManager.GetInstance().sumacsaesList[1].isClear && QuestManager.GetInstance().sumacsaesList[2].isClear != true)
+                if (QuestManager.GetInstance().sumacsaesList[0].isClear || QuestManager.GetInstance().sumacsaesList[1].isClear || QuestManager.GetInstance().sumacsaesList[2].isClear != true)
                 {
                     mainCa.depth -= 2;
                     Invoke("Up", 4f);
