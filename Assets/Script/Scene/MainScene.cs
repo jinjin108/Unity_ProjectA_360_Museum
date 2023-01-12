@@ -11,6 +11,10 @@ public class MainScene : MonoBehaviour
 
     private void Start()
     {
+        AudioManager.instance.bgAudioSource.clip = AudioManager.instance.bgList[0];
+        AudioManager.instance.bgAudioSource.Play();
+        AudioManager.instance.bgAudioSource.volume = 0.3f;
+
         QuizManager.GetInstance().infiPageNumber = 0;
         ppv.profile.TryGetSettings(out bl);
         bl.intensity.value = 100f;
