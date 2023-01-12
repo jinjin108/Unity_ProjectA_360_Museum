@@ -8,19 +8,13 @@ public class AudioManager : MonoBehaviour
 
     private static AudioManager instance = null;
 
-    public static AudioManager GetInstance()
-    {
-        if (instance == null)
-        {
-            GameObject go = new GameObject("@AudioManager");
-            instance = go.AddComponent<AudioManager>();
+    #endregion
 
-            DontDestroyOnLoad(go);
-        }
-        return instance;
+    private void Awake()
+    {
+        instance = this;
 
     }
-    #endregion
 
     public List<AudioClip> bgList = new List<AudioClip>();
     public List<AudioClip> sfxList = new List<AudioClip>();
