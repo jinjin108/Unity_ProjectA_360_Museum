@@ -27,6 +27,7 @@ public class LanguageSelection : MonoBehaviour
     [SerializeField] private Material backGround;
     [SerializeField] private Light point;
     [SerializeField] private Image infoimg;
+    [SerializeField] private Image imgStart;
 
 
     Bloom bl;
@@ -88,6 +89,7 @@ public class LanguageSelection : MonoBehaviour
         LocalizationKoBnt.gameObject.SetActive(true);
         LocalizationEnBnt.gameObject.SetActive(true);
         StartBnt.gameObject.SetActive(false);
+        imgStart.gameObject.SetActive(false);
         txtinfoText.gameObject.SetActive(true);
         LocalizationTable("LanguageSelection");
         infoimg.gameObject.SetActive(true);
