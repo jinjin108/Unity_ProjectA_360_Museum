@@ -11,6 +11,8 @@ public class EndingScene : MonoBehaviour
 
     private void Start()
     {
+        AudioManager.instance.audioSource.clip = AudioManager.instance.bgList[0];
+        AudioManager.instance.audioSource.Play();
     }
 
     public void SkipCredit()
