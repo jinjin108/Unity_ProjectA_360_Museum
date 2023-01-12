@@ -85,6 +85,10 @@ public class QuizManager : MonoBehaviour
         switch (curQuizNumber)
         {
             case 0:
+                AudioManager.instance.bgAudioSource.clip = AudioManager.instance.bgList[0];
+                AudioManager.instance.bgAudioSource.Play();
+                AudioManager.instance.bgAudioSource.volume = 0.5f;
+
                 CreateSprite();
                 sprite.transform.localEulerAngles = new Vector3(0, -90f, 0);
                 sprite.transform.position = new Vector3(-10.93f, 2.49f, -1.36f);
@@ -93,6 +97,10 @@ public class QuizManager : MonoBehaviour
                 CreateTarget(targetName);
                 break;
             case 1:
+                AudioManager.instance.bgAudioSource.clip = AudioManager.instance.bgList[1];
+                AudioManager.instance.bgAudioSource.Play();
+                AudioManager.instance.bgAudioSource.volume = 0.5f;
+
                 CreateSprite();
                 sprite.transform.localEulerAngles = new Vector3(31.77f, -81.04f, 0f);
                 sprite.transform.position = new Vector3(-8.99f, 0.5f, 1.49f);
@@ -100,6 +108,10 @@ public class QuizManager : MonoBehaviour
                 CreateTarget(targetName);
                 break;
             case 2:
+                AudioManager.instance.bgAudioSource.clip = AudioManager.instance.bgList[2];
+                AudioManager.instance.bgAudioSource.Play();
+                AudioManager.instance.bgAudioSource.volume = 0.5f;
+
                 CreateSprite();
                 sprite.transform.localEulerAngles = new Vector3(0, -90f, 0.82f);
                 sprite.transform.position = new Vector3(-4.82f, 1.6f, 0.12f);
@@ -128,6 +140,9 @@ public class QuizManager : MonoBehaviour
         fadeIn = fadeinimg.GetComponent<Image>();
 
         StartCoroutine("SkyFadeIn");
+
+        AudioManager.instance.sfxAudioSource.clip = AudioManager.instance.sfxList[0];
+        AudioManager.instance.sfxAudioSource.Play();
 
         Object obj = Resources.Load($"Object/" + "SecondGame");
         secondGame = (GameObject)Instantiate(obj);
@@ -436,6 +451,9 @@ public class QuizManager : MonoBehaviour
     }
     public void InfoNext()
     {
+        AudioManager.instance.sfxAudioSource.clip = AudioManager.instance.sfxList[1];
+        AudioManager.instance.sfxAudioSource.Play();
+
         infiPageNumber += 1;
         LocalizationTable($"Relics_Info_{curQuizNumber}_{infiPageNumber}");
         relicsInfotxt.text = info;
