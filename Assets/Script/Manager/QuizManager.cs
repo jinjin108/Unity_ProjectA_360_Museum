@@ -173,9 +173,9 @@ public class QuizManager : MonoBehaviour
                 break;
             case 2:
                 secondGameCube_1[0].transform.localScale = new Vector3(0.05f, 13.42f, 21.4f);
-                secondGameCube_1[0].transform.position = new Vector3(-11f, 5f, -0.7f);
+                secondGameCube_1[0].transform.position = new Vector3(-17f, 5f, -0.7f);
                 secondGameCube_1[1].transform.localScale = new Vector3(0.02f, 4.9f, 5.5f);
-                secondGameCube_1[1].transform.position = new Vector3(-11f, 8.5f, 12.8f);
+                secondGameCube_1[1].transform.position = new Vector3(-17f, 8.5f, 12.8f);
 
                 Texture tex_3 = Resources.Load("Images/CulturalHeritage_2", typeof(Texture)) as Texture;
                 mat.SetTexture("_MainTex", tex_3);
