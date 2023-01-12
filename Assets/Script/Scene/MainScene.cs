@@ -11,6 +11,8 @@ public class MainScene : MonoBehaviour
 
     private void Start()
     {
+
+
         AudioManager.instance.bgAudioSource.clip = AudioManager.instance.bgList[0];
         AudioManager.instance.bgAudioSource.Play();
         AudioManager.instance.bgAudioSource.volume = 0.3f;

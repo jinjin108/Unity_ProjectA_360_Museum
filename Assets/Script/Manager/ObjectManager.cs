@@ -27,6 +27,9 @@ public class ObjectManager : MonoBehaviour
     List<GameObject> SymbolList = new List<GameObject>();
     Dictionary<string, GameObject> SumacsaeList = new Dictionary<string, GameObject>();
 
+    Camera mainCa;
+    Camera secondCa;
+
     public void CreateQuest()
     {
         QuestObject[] questObjectList = QuestManager.GetInstance().questObjectList;
@@ -136,6 +139,11 @@ public class ObjectManager : MonoBehaviour
 
     public void CreateSumacsae()
     {
+        GameObject mainCame = GameObject.FindGameObjectWithTag("MainCamera");
+        mainCa = mainCame.GetComponent<Camera>();
+        GameObject secondCame = GameObject.FindGameObjectWithTag("SecondCamera");
+        secondCa = secondCame.GetComponent<Camera>();
+
         for (int i = 0; i < QuestManager.GetInstance().sumacsaesList.Length; i++)
         {
             if (QuestManager.GetInstance().sumacsaesList[i].isClear != false)
@@ -143,7 +151,10 @@ public class ObjectManager : MonoBehaviour
             Object Obj = Resources.Load("Object/" + QuestManager.GetInstance().sumacsaesList[i].name);
             GameObject go = (GameObject)Instantiate(Obj);
 
-            SumacsaeList.Add(QuestManager.GetInstance().sumacsaesList[i].name, go);
+                SumacsaeList.Add(QuestManager.GetInstance().sumacsaesList[i].name, go);
+                mainCa.depth -= 2;
+                Invoke("Up", 3f);
+
             }
         }
 
@@ -160,11 +171,15 @@ public class ObjectManager : MonoBehaviour
 
     }
 
-    public void ClearList() 
-    {                       
+    public void ClearList()
+    {
         showCaseList.Clear();
         RelicsList.Clear();
         SymbolList.Clear();
         SumacsaeList.Clear();
+    }
+    private void Up()
+    {
+        mainCa.depth += 2;
     }
 }
