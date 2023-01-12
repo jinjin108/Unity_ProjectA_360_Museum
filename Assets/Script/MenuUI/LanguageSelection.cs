@@ -64,8 +64,8 @@ public class LanguageSelection : MonoBehaviour
 
     public void UserLocalizationen()
     {
-        AudioManager.instance.bgAudioSource.clip = AudioManager.instance.sfxList[1];
-        AudioManager.instance.bgAudioSource.Play();
+        AudioManager.instance.sfxAudioSource.clip = AudioManager.instance.sfxList[1];
+        AudioManager.instance.sfxAudioSource.Play();
 
         CheckLanguages.GetInstance().selectionLanguages(0);
         NextBnt.gameObject.SetActive(true);
@@ -179,6 +179,9 @@ public class LanguageSelection : MonoBehaviour
                 txtinfoText.text = "박물관으로..";
                 Invoke("ChangMainScene", 3f);
                 MenuAni.GetInstance().StartRun();
+                AudioManager.instance.sfxAudioSource.clip = AudioManager.instance.sfxList[2];
+                AudioManager.instance.sfxAudioSource.Play();
+                AudioManager.instance.sfxAudioSource.loop = true;
                 break;
 
         }
