@@ -29,7 +29,6 @@ public class ObjectManager : MonoBehaviour
 
     Camera mainCa;
     Camera secondCa;
-
     public void CreateQuest()
     {
         QuestObject[] questObjectList = QuestManager.GetInstance().questObjectList;
@@ -146,15 +145,25 @@ public class ObjectManager : MonoBehaviour
 
         for (int i = 0; i < QuestManager.GetInstance().sumacsaesList.Length; i++)
         {
+            if (QuestManager.GetInstance().sumacsaesList[0].isClear && QuestManager.GetInstance().sumacsaesList[1].isClear && QuestManager.GetInstance().sumacsaesList[2].isClear == true)
+            {
+
+                Down();
+                Invoke("Up", 7f);
+            }
+
             if (QuestManager.GetInstance().sumacsaesList[i].isClear != false)
             {
+
                 Object Obj = Resources.Load("Object/" + QuestManager.GetInstance().sumacsaesList[i].name);
                 GameObject go = (GameObject)Instantiate(Obj);
 
                 SumacsaeList.Add(QuestManager.GetInstance().sumacsaesList[i].name, go);
-                mainCa.depth -= 2;
-                Invoke("Up", 3f);
-
+                if (QuestManager.GetInstance().sumacsaesList[0].isClear && QuestManager.GetInstance().sumacsaesList[1].isClear && QuestManager.GetInstance().sumacsaesList[2].isClear != true)
+                {
+                    mainCa.depth -= 2;
+                    Invoke("Up", 4f);
+                }
             }
         }
 
@@ -184,7 +193,13 @@ public class ObjectManager : MonoBehaviour
         SymbolList.Clear();
         SumacsaeList.Clear();
     }
-    private void Up()
+
+    public void Down()
+    {
+        mainCa.depth -= 2;
+    }
+
+    public void Up()
     {
         mainCa.depth += 2;
     }
