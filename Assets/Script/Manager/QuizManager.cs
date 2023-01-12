@@ -426,7 +426,7 @@ public class QuizManager : MonoBehaviour
                 tar.transform.localEulerAngles = new Vector3(2.8f,-87f,0.2f);
                 break;
             case 2:
-                tar.transform.position = new Vector3((sprite.transform.position.x - 5f), sprite.transform.position.y, sprite.transform.position.z);
+                tar.transform.position = new Vector3((sprite.transform.position.x - 10f), sprite.transform.position.y, sprite.transform.position.z);
                 tar.transform.localEulerAngles = sprite.transform.localEulerAngles;
                 break;
         }
