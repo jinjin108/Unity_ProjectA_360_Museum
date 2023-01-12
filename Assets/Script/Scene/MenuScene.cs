@@ -6,6 +6,5 @@ public class MenuScene : MonoBehaviour
 {
     void Start()
     {
-        AudioManager.GetInstance();
     }
 }

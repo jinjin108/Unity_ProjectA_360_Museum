@@ -11,7 +11,6 @@ public class EndingScene : MonoBehaviour
 
     private void Start()
     {
-        AudioManager.GetInstance();
     }
 
     public void SkipCredit()
