@@ -148,8 +148,8 @@ public class ObjectManager : MonoBehaviour
         {
             if (QuestManager.GetInstance().sumacsaesList[i].isClear != false)
             {
-            Object Obj = Resources.Load("Object/" + QuestManager.GetInstance().sumacsaesList[i].name);
-            GameObject go = (GameObject)Instantiate(Obj);
+                Object Obj = Resources.Load("Object/" + QuestManager.GetInstance().sumacsaesList[i].name);
+                GameObject go = (GameObject)Instantiate(Obj);
 
                 SumacsaeList.Add(QuestManager.GetInstance().sumacsaesList[i].name, go);
                 mainCa.depth -= 2;
@@ -159,6 +159,12 @@ public class ObjectManager : MonoBehaviour
         }
 
 
+
+    }
+    public void CreateEndingPotar()
+    {
+        Object poTarObj = Resources.Load("Object/" + "EndingPotar");
+        GameObject poTar = (GameObject)Instantiate(poTarObj);
 
     }
 

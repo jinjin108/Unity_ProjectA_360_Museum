@@ -7,11 +7,11 @@ using UnityEngine.Rendering.PostProcessing;
 public class MainScene : MonoBehaviour
 {
     [SerializeField] private PostProcessVolume ppv;
-    Bloom bl;
+    public Bloom bl;
+    public AutoExposure ae;
 
     private void Start()
     {
-
 
         AudioManager.instance.bgAudioSource.clip = AudioManager.instance.bgList[0];
         AudioManager.instance.bgAudioSource.Play();
@@ -19,6 +19,7 @@ public class MainScene : MonoBehaviour
 
         QuizManager.GetInstance().infiPageNumber = 0;
         ppv.profile.TryGetSettings(out bl);
+        ppv.profile.TryGetSettings(out ae);
         bl.intensity.value = 100f;
 
         ObjectManager.GetInstance().CreateQuest();
@@ -46,5 +47,4 @@ public class MainScene : MonoBehaviour
         }
 
     }
-
 }

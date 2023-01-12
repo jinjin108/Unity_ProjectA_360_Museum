@@ -208,7 +208,7 @@ public class QuizManager : MonoBehaviour
 
         float randY = Random.Range(-(secondGameObject.lossyScale.y / 2), (secondGameObject.lossyScale.y / 2));
         float randZ = Random.Range(-(secondGameObject.lossyScale.z / 2), (secondGameObject.lossyScale.z / 2));
-        curPos.x += 0.5f;
+       // curPos.x += f;
         curPos.y += randY;
         curPos.z += randZ;
 

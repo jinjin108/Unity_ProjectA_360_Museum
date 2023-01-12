@@ -44,9 +44,12 @@ public class QuestManager : MonoBehaviour
                 return;
             }
         }
-
+        Invoke("CreatePotar", 3f);
         Debug.Log("Open The Door");
 
     }
-    
+    public void CreatePotar()
+    {
+        ObjectManager.GetInstance().CreateEndingPotar();
+    }
 }
