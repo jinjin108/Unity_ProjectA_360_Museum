@@ -26,6 +26,8 @@ public class LanguageSelection : MonoBehaviour
     [SerializeField] private Button BackBnt;
     [SerializeField] private Material backGround;
     [SerializeField] private Light point;
+    [SerializeField] private Image infoimg;
+
 
     Bloom bl;
     private void Start()
@@ -36,9 +38,10 @@ public class LanguageSelection : MonoBehaviour
         NextBnt.gameObject.SetActive(false);
         BackBnt.gameObject.SetActive(false);
         LocalizationBntFalse();
-
         RenderSettings.skybox = backGround;
         ppv.profile.TryGetSettings(out bl);
+        infoimg.gameObject.SetActive(false);
+
 
     }
     public void UserLocalizationko()
@@ -78,6 +81,7 @@ public class LanguageSelection : MonoBehaviour
         StartBnt.gameObject.SetActive(false);
         txtinfoText.gameObject.SetActive(true);
         LocalizationTable("LanguageSelection");
+        infoimg.gameObject.SetActive(true);
         txtinfoText.text = str;
 
 
