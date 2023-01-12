@@ -46,6 +46,9 @@ public class LanguageSelection : MonoBehaviour
     }
     public void UserLocalizationko()
     {
+        AudioManager.instance.sfxAudioSource.clip = AudioManager.instance.sfxList[1];
+        AudioManager.instance.sfxAudioSource.Play();
+
         CheckLanguages.GetInstance().selectionLanguages(1);
         txtinfoText.gameObject.SetActive(true);
         NextBnt.gameObject.SetActive(true);
@@ -60,6 +63,9 @@ public class LanguageSelection : MonoBehaviour
 
     public void UserLocalizationen()
     {
+        AudioManager.instance.bgAudioSource.clip = AudioManager.instance.sfxList[1];
+        AudioManager.instance.bgAudioSource.Play();
+
         CheckLanguages.GetInstance().selectionLanguages(0);
         NextBnt.gameObject.SetActive(true);
         BackBnt.gameObject.SetActive(true);
@@ -76,6 +82,9 @@ public class LanguageSelection : MonoBehaviour
 
     public void GameStart()
     {
+        AudioManager.instance.sfxAudioSource.clip = AudioManager.instance.sfxList[0];
+        AudioManager.instance.sfxAudioSource.Play();
+
         LocalizationKoBnt.gameObject.SetActive(true);
         LocalizationEnBnt.gameObject.SetActive(true);
         StartBnt.gameObject.SetActive(false);
@@ -106,6 +115,9 @@ public class LanguageSelection : MonoBehaviour
     }
     public void NextText()
     {
+        AudioManager.instance.sfxAudioSource.clip = AudioManager.instance.sfxList[1];
+        AudioManager.instance.sfxAudioSource.Play();
+
         switch (infoscore)
         {
             case 0:
@@ -172,6 +184,9 @@ public class LanguageSelection : MonoBehaviour
     }
     public void BackText()
     {
+        AudioManager.instance.sfxAudioSource.clip = AudioManager.instance.sfxList[1];
+        AudioManager.instance.sfxAudioSource.Play();
+
         switch (infoscore)
         {
             case 4:
