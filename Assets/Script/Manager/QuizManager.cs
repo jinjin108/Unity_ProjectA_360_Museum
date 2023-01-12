@@ -435,15 +435,15 @@ public class QuizManager : MonoBehaviour
         switch (curQuizNumber)
         {
             case 0:
-                tar.transform.position = sprite.transform.position;
+                tar.transform.position = new Vector3(sppo.x - 10, sppo.y, sppo.z);
                 tar.transform.localEulerAngles = sprite.transform.localEulerAngles;
                 break;
             case 1:
-                tar.transform.position = new Vector3(sppo.x - 4, sppo.y, sppo.z);
+                tar.transform.position = new Vector3(sppo.x - 14, sppo.y, sppo.z);
                 tar.transform.localEulerAngles = new Vector3(2.8f,-87f,0.2f);
                 break;
             case 2:
-                tar.transform.position = new Vector3((sppo.x - 10f), sppo.y, sppo.z);
+                tar.transform.position = new Vector3((sppo.x - 15f), sppo.y, sppo.z);
                 tar.transform.localEulerAngles = sprite.transform.localEulerAngles;
                 break;
         }
