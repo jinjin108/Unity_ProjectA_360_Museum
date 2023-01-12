@@ -158,6 +158,10 @@ public class ObjectManager : MonoBehaviour
                 Object Obj = Resources.Load("Object/" + QuestManager.GetInstance().sumacsaesList[i].name);
                 GameObject go = (GameObject)Instantiate(Obj);
 
+                AudioManager.instance.sfxAudioSource.clip = AudioManager.instance.sfxList[0];
+                AudioManager.instance.sfxAudioSource.volume = 1f;
+                AudioManager.instance.sfxAudioSource.Play();
+
                 SumacsaeList.Add(QuestManager.GetInstance().sumacsaesList[i].name, go);
                 if (QuestManager.GetInstance().sumacsaesList[0].isClear || QuestManager.GetInstance().sumacsaesList[1].isClear || QuestManager.GetInstance().sumacsaesList[2].isClear != true)
                 {
