@@ -310,6 +310,9 @@ public class QuizManager : MonoBehaviour
 
         if (Vector3.Distance(checkPosition, relics.transform.position) < 0.2f)
         {
+            AudioManager.instance.sfxAudioSource.clip = AudioManager.instance.sfxList[2];
+            AudioManager.instance.sfxAudioSource.Play();
+
             QuestManager.GetInstance().questObjectList[curQuizNumber].isDone = true;
             QuestManager.GetInstance().sumacsaesList[curQuizNumber].isClear = true;
             relics = null;
