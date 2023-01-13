@@ -92,7 +92,7 @@ public class QuizManager : MonoBehaviour
 
                 CreateSprite();
                 sprite.transform.localEulerAngles = new Vector3(0, -90f, 0);
-                sprite.transform.position = new Vector3(-10.93f, 2.49f, -1.36f);
+                sprite.transform.position = new Vector3(-15.93f, 2.49f, -1.36f);
                 quizojpoint = new Vector3(-10.93f, 2.49f, -1.36f);
                 targetName = "target_1";
                 CreateTarget(targetName);
@@ -104,7 +104,7 @@ public class QuizManager : MonoBehaviour
 
                 CreateSprite();
                 sprite.transform.localEulerAngles = new Vector3(31.77f, -81.04f, 0f);
-                sprite.transform.position = new Vector3(-8.99f, 0.5f, 1.49f);
+                sprite.transform.position = new Vector3(-13.99f, 0.5f, 1.49f);
                 targetName = "target_2";
                 CreateTarget(targetName);
                 break;
@@ -115,7 +115,7 @@ public class QuizManager : MonoBehaviour
 
                 CreateSprite();
                 sprite.transform.localEulerAngles = new Vector3(0, -90f, 0.82f);
-                sprite.transform.position = new Vector3(-4.82f, 1.6f, 0.12f);
+                sprite.transform.position = new Vector3(-9.82f, 1.6f, 0.12f);
                 targetName = "target_3";
                 CreateTarget(targetName);
                 break;
@@ -173,9 +173,9 @@ public class QuizManager : MonoBehaviour
                 break;
             case 2:
                 secondGameCube_1[0].transform.localScale = new Vector3(0.05f, 13.42f, 21.4f);
-                secondGameCube_1[0].transform.position = new Vector3(-17f, 5f, -0.7f);
+                secondGameCube_1[0].transform.position = new Vector3(-14f, 5f, -0.7f);
                 secondGameCube_1[1].transform.localScale = new Vector3(0.02f, 4.9f, 5.5f);
-                secondGameCube_1[1].transform.position = new Vector3(-17f, 8.5f, 12.8f);
+                secondGameCube_1[1].transform.position = new Vector3(-14f, 8.5f, 12.8f);
 
                 Texture tex_3 = Resources.Load("Images/CulturalHeritage_2", typeof(Texture)) as Texture;
                 mat.SetTexture("_MainTex", tex_3);
