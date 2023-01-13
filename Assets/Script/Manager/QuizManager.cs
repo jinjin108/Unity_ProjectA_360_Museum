@@ -115,7 +115,7 @@ public class QuizManager : MonoBehaviour
 
                 CreateSprite();
                 sprite.transform.localEulerAngles = new Vector3(0, -90f, 0.82f);
-                sprite.transform.position = new Vector3(-9.82f, 1.6f, 0.12f);
+                sprite.transform.position = new Vector3(-5f, 1.6f, 0.12f);
                 targetName = "target_3";
                 CreateTarget(targetName);
                 break;
