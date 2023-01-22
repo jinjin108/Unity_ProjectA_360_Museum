@@ -54,7 +54,7 @@ public class QuizManager : MonoBehaviour
     public string targetName;
     public Transform secondGameObject;
 
-    public test ReadingGlasses = new test();
+    public ReadingGlasses ReadingGlasses = new ReadingGlasses();
     public Image fadeIn;
     public PostProcessVolume ppv;
     AutoExposure ae;
